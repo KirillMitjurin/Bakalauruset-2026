@@ -7,10 +7,14 @@ import os
 from langgraph.checkpoint.memory import MemorySaver
 import uuid
 from langgraph.types import Command
-os.environ["OPENROUTER_API_KEY"] = "Bearer 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"
+from dotenv import load_dotenv
+
+load_dotenv()
+MY_API_KEY = os.getenv('API_TOKEN')
+
 PERSONA_SYSTEM_PROMPT = """You are a typical everyday computer user (not an expert in cybersecurity).
 
-- TONE: Answer in максимум 3 sentences. Keep answers simple, natural, slightly informal. Explain your reasoning briefly if needed.
+- TONE: Answer in maximum 3 sentences. Keep answers simple, natural, slightly informal. Explain your reasoning briefly if needed.
 
 - KNOWLEDGE LEVEL:
 You have basic understanding of cybersecurity (you heard about phishing, passwords, maybe 2FA), but you are not confident and sometimes unsure.
@@ -35,7 +39,7 @@ Answer like a real person, not like a textbook. It's okay to be uncertain or sli
 persona_history = [{"role": "system", "content": PERSONA_SYSTEM_PROMPT}]
 
 
-model = init_chat_model(model="nvidia/nemotron-3-super-120b-a12b:free", model_provider="openrouter", api_key="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")
+model = init_chat_model(model="nvidia/nemotron-3-super-120b-a12b:free", model_provider="openrouter", api_key=MY_API_KEY)
 
 checkpointer = MemorySaver()
 
