@@ -11,23 +11,33 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from PersonaAgents.firstPersonaAgent import ask_persona
 from dotenv import load_dotenv
+import json 
+import json.decoder
+
+from langchain_core.messages import SystemMessage, HumanMessage
+import re
 
 load_dotenv()
 MY_API_KEY = os.getenv('API_TOKEN')
 
 state = {
-    "topics": [
+    "current_topic_idx": 0,
+    "scores_map": {},
+    "risks_map": {},
+    "followup_count": {}, 
+    "history": []
+}
+
+TOPICS = [
         "password_hygiene",
         "phishing_awareness",
         "software_updates",
         "mfa_usage",
         "data_handling",
         "device_network_safety"
-    ],
-    "current_topic_idx": 0,
-    "scores_map": {},
-    "history": {}
-}
+]
+
+PASS_SCORE = 0.6
 
 SYSTEM_PROMPT = """You are the cybersecurity risk assessment interviewer.
 Your job is to conversational interview covering ALL 6 topics:
@@ -64,8 +74,9 @@ STEP 5: Call report_subagent with scores_map.
 CRITICAL: Do NOT end interview until completed_topics has all 6 topics.
 TONE: Be conversational and non-judgmental. This is not a test — it's a risk checkup."""
 
-model = init_chat_model(model="openai/gpt-oss-120b:free", model_provider="openrouter", api_key=MY_API_KEY)
+model = init_chat_model(model="mistralai/mistral-nemo", model_provider="openrouter", api_key=MY_API_KEY)
 tools = [ask_user]
+
 
 
 interview_subagent = {
@@ -87,7 +98,7 @@ You receive:
     - data_handling: Ask about how they share files, use cloud storage, handle sensitive info
     - device_network_safety: Ask about public Wi-Fi usage, home router security, VPN
 
-        Rules:
+    Rules:
     - If last_score < 0.7: ask a more specific follow-up on the SAME topic to dig deeper
     - If no last_score: ask an open-ended starter question
     - Keep questions SHORT and conversational (1-2 sentences max)
@@ -147,12 +158,12 @@ Topic weights for overall risk calculation:
 Calculate:
 1. weighted_risk_score = sum((1 - score) * weight) for each topic  → 0.0 (safe) to 1.0 (very risky)
 2. overall_risk_level: 
-   - 0.0–0.3 → LOW RISK ✅
-   - 0.31–0.6 → MODERATE RISK ⚠️
-   - 0.61–1.0 → HIGH RISK 🔴
+   - 0.0–0.3 → LOW RISK 
+   - 0.31–0.6 → MODERATE RISK 
+   - 0.61–1.0 → HIGH RISK 
 
 Generate a markdown report with:
-## 🔐 Your Personal Cyber Risk Report
+##  Your Personal Cyber Risk Report
 
 ### Overall Risk Score: X.XX — [LEVEL]
 
@@ -161,13 +172,13 @@ Generate a markdown report with:
 |-------|-------|------------|
 ...
 
-### ⚠️ Top 3 Vulnerabilities Found:
+###  Top 3 Vulnerabilities Found:
 (list the 3 lowest-scoring topics with specific risky behaviors mentioned)
 
-### ✅ What You're Doing Well:
+###  What You're Doing Well:
 (list topics with score >= 0.7)
 
-### 🛠️ Priority Recommendations:
+###  Priority Recommendations:
 1. [Most urgent fix — be specific and actionable]
 2. [Second fix]
 3. [Third fix]
@@ -191,45 +202,127 @@ agent = create_deep_agent(
 ).with_config({"recursion_limit": 100})
 
 
+interview_model = init_chat_model(model="openai/gpt-oss-120b:free", model_provider="openrouter", api_key=MY_API_KEY)
+
+eval_model = init_chat_model(
+    model="google/gemma-4-31b-it",  
+    model_provider="openrouter",
+    api_key=MY_API_KEY
+)
+
+report_model = init_chat_model(
+    model="google/gemma-4-31b-it",
+    model_provider="openrouter",
+    api_key=MY_API_KEY
+)
+
+def get_interview_question(topic, last_score, config):
+    prompt = f""" current_topic: {topic} 
+    last_score = {last_score if last_score is not None else 'none'}
+    generate ONE question. Return only the quesition text.
+"""
+    result = interview_model.invoke([{"role": "user", "content": prompt}],
+                          config={"system": interview_subagent["system_prompt"]})
+    return result.content.strip()
+
+def get_evaluation(topic, answer, config):
+    prompt = f""" current_topic: {topic}, 
+    answer: {answer}
+    You MUST return ONLY this JSON structure, nothing else, no markdown, no explanation:
+    {{"score": 0.45, "risk_level": "moderate", "identified_risks": ["risk1", "risk2"], "needs_followup": true}}
+    """
+    messages = [
+        SystemMessage(content=evaluation_subagent["system_prompt"]),
+        HumanMessage(content=prompt)
+    ]
+
+    result = eval_model.invoke(messages)
+    raw = result.content.strip()
+    
+    try:
+        raw = result.content.strip()
+        raw = raw.replace("```json", "").replace("```", "").strip()
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        return {"score": 0.5, "identified_risks": [], "needs_followup": False}    
+
+
+
+def get_report(scores_map, risks_map, config):
+    prompt = f"""scores_map: {json.dumps(scores_map, indent=2)}
+    risks_map: {json.dumps(risks_map, indent=2)}
+    Generate the full markdown risk report."""
+
+    result = report_model.invoke([{"role": "user", "content": prompt}],
+                            config={"system": report_subagent["system_prompt"]})
+    return result.content.strip()
+
 def run_interview():
     config = {"configurable": {"thread_id": str(uuid.uuid4())}}
 
     print("=== PERSONAL CYBER RISK ASSESSMENT INTERVIEW=== \n")
 
-    result = agent.invoke(
+    # result = agent.invoke(
 
-        {"messages": [{"role": "user", "content": "Start the interview"}]},
-        config=config
-    )
+    #     {"messages": [{"role": "user", "content": "Start the interview"}]},
+    #     config=config
+    # )
     
-    while result.get("__interrupt__"):
-        interrupts = result["__interrupt__"][0].value
-        action_requests = interrupts["action_requests"] 
+    # while result.get("__interrupt__"):
+    #     interrupts = result["__interrupt__"][0].value
+    #     action_requests = interrupts["action_requests"] 
 
-        decisions = []
-        for action in action_requests: 
-            if action["name"] == "ask_user":
-                question = action["args"].get("question", "")
-                print(f"\nInterviewer: {question}")
-                persona_answer  = ask_persona(question)
-                print(persona_answer)
+    #     decisions = []
+    #     for action in action_requests: 
+    #         if action["name"] == "ask_user":
+    #             question = action["args"].get("question", "")
+    #             print(f"\nInterviewer: {question}")
+    #             persona_answer  = ask_persona(question)
+    #             print(persona_answer)
 
-                decisions.append({
-                    "type": "edit", 
-                    "edited_action": {
-                        "name": "ask_user", 
-                        "args": {"question": persona_answer }
-                    }
-                })
-            else:
-                decisions.append({"type": "approve"})
-        result = agent.invoke(
-            Command(resume={"decisions": decisions}),
-            config=config
-        )
+    #             decisions.append({
+    #                 "type": "edit", 
+    #                 "edited_action": {
+    #                     "name": "ask_user", 
+    #                     "args": {"question": persona_answer }
+    #                 }
+    #             })
+    #         else:
+    #             decisions.append({"type": "approve"})
+    #     result = agent.invoke(
+    #         Command(resume={"decisions": decisions}),
+    #         config=config
+    #     )
 
-    print(f"\n=== Result ===\n{result['messages'][-1].content}")
+    # print(f"\n=== Result ===\n{result['messages'][-1].content}")
+
+    while state["current_topic_idx"] < len(TOPICS):
+        topic = TOPICS[state["current_topic_idx"]]
+        last_score = state["scores_map"].get(topic)
+
+        question = get_interview_question(topic=topic, last_score=last_score, config=config)
+
+        print("agent: " + question)
+        persona_answer = ask_persona(question=question)
+        print("persona: " + persona_answer)
+
+        evaluation = get_evaluation(topic=topic, answer=persona_answer, config=config)
+        print(evaluation)
+        score = evaluation["score"]
+        risks = evaluation.get("identified_risks", [])
+
+        state["scores_map"][topic] = score
+        state["risks_map"].setdefault(topic, []).extend(risks)
+        state["history"].append((topic, question, persona_answer, score))
+
+        print(f"   [Score: {score:.2f} | Risks: {', '.join(risks) if risks else 'none'}]")
+
+        if score >= PASS_SCORE:
+            state["current_topic_idx"] += 1
+    report = get_report(scores_map=state["scores_map"], risks_map=state["risks_map"], config=config)
+    print(report)
 
 if __name__ == "__main__": 
     run_interview() 
+
 
