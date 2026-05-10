@@ -1,0 +1,1616 @@
+[
+    {
+        "scenario_id": 1,
+        "scenario": "I use the same password for every service.",
+        "facts": [
+            "user reuses same password across all services"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential stuffing attack",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "If one service is compromised, attackers can use the same credentials to gain unauthorized access to other services.",
+                    "possible_consequence": "Unauthorized access to multiple systems, data breaches, and potential financial loss."
+                },
+                {
+                    "risk_name": "Increased impact of password leaks", 
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Reusing passwords across services increases the impact of a password leak, as attackers can access multiple accounts.",
+                    "possible_consequence": "Compromised accounts across multiple services, leading to data breaches and identity theft."
+                },
+                {
+                    "risk_name": "Lack of password uniqueness enforcement", 
+                    "category": "processes_and_procedures",
+                    "evidence": "The same password may not be used more than once.",
+                    "description": "The organization does not enforce password uniqueness, allowing users to reuse passwords across systems.",
+                    "possible_consequence": "Increased risk of credential stuffing attacks and unauthorized access."
+                },
+                {
+                    "risk_name": "Weak password management practices", 
+                    "category": "administrative_routines",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Users reusing passwords indicates weak password management practices within the organization.",
+                    "possible_consequence": "Higher likelihood of successful attacks due to poor password hygiene."
+                },
+                {
+                    "risk_name": "Potential unauthorized access to privileged accounts", 
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "If a privileged account uses the same password as other services, it increases the risk of unauthorized access.",
+                    "possible_consequence": "Compromise of privileged accounts, leading to severe security breaches."
+                },
+                {
+                    "risk_name": "Inadequate password reset procedures",  
+                    "category": "processes_and_procedures",
+                    "evidence": "Sufficiently secure procedures are in place within the organisation to reset or change passwords.",
+                    "description": "If password reset procedures are not robust, reused passwords can be easily exploited.",
+                    "possible_consequence": "Unauthorized access to accounts and systems."
+                },
+                {
+                    "risk_name": "Lack of multi-factor authentication enforcement", 
+                    "category": "system_configuration", 
+                    "evidence": "Multi-factor authentication is used to protect privileged accounts from external attackers.",
+                    "description": "If multi-factor authentication is not enforced for all accounts, reused passwords pose a higher risk.",
+                    "possible_consequence": "Increased likelihood of unauthorized access to accounts."
+                },
+                {
+                    "risk_name": "Potential insider threat", 
+                    "category": "personnel",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Insiders with knowledge of reused passwords can exploit them to gain unauthorized access.",
+                    "possible_consequence": "Internal security breaches and data leaks."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential stuffing attack",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "If one service is compromised, attackers can use the same credentials to gain unauthorized access to other services.",
+                    "possible_consequence": "Unauthorized access to multiple systems, data breaches, and potential financial loss.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential stuffing attacks due to password reuse, and the potential consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the significant impact of unauthorized access to privileged accounts and data loss."
+                },
+                {
+                    "risk_name": "Increased impact of password leaks",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Reusing passwords across services increases the impact of a password leak, as attackers can access multiple accounts.",
+                    "possible_consequence": "Compromised accounts across multiple services, leading to data breaches and identity theft.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence suggests a high likelihood of password leaks having a widespread impact due to password reuse, resulting in a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by emphasizing the severe consequences of data loss and unauthorized access."
+                },
+                {
+                    "risk_name": "Lack of password uniqueness enforcement",
+                    "category": "processes_and_procedures",
+                    "evidence": "The same password may not be used more than once.",
+                    "description": "The organization does not enforce password uniqueness, allowing users to reuse passwords across systems.",
+                    "possible_consequence": "Increased risk of credential stuffing attacks and unauthorized access.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of password reuse due to lack of enforcement, but the potential impact is high, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with unauthorized access and data loss."
+                },
+                {
+                    "risk_name": "Weak password management practices",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Users reusing passwords indicates weak password management practices within the organization.",
+                    "possible_consequence": "Higher likelihood of successful attacks due to poor password hygiene.",
+                    "likelihood": "High",
+                    "impact": "Medium",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence suggests a high likelihood of successful attacks due to weak password management, with a medium impact, resulting in a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by emphasizing the importance of secure password practices to prevent unauthorized access."
+                },
+                {
+                    "risk_name": "Potential unauthorized access to privileged accounts",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "If a privileged account uses the same password as other services, it increases the risk of unauthorized access.",
+                    "possible_consequence": "Compromise of privileged accounts, leading to severe security breaches.",
+                    "likelihood": "Medium",
+                    "impact": "Very High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access to privileged accounts due to password reuse, but the potential impact is very high, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the significant impact of unauthorized access to privileged accounts."
+                },
+                {
+                    "risk_name": "Inadequate password reset procedures",
+                    "category": "processes_and_procedures",
+                    "evidence": "Sufficiently secure procedures are in place within the organisation to reset or change passwords.",
+                    "description": "If password reset procedures are not robust, reused passwords can be easily exploited.",
+                    "possible_consequence": "Unauthorized access to accounts and systems.",
+                    "likelihood": "Low",
+                    "impact": "Medium",
+                    "risk_level": "Low",
+                    "analysis_justification": "The evidence suggests a low likelihood of inadequate password reset procedures, with a medium impact, resulting in a low risk level.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Lack of multi-factor authentication enforcement",
+                    "category": "system_configuration",
+                    "evidence": "Multi-factor authentication is used to protect privileged accounts from external attackers.",
+                    "description": "If multi-factor authentication is not enforced for all accounts, reused passwords pose a higher risk.",
+                    "possible_consequence": "Increased likelihood of unauthorized access to accounts.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access due to lack of multi-factor authentication enforcement, with a high impact, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by emphasizing the importance of multi-factor authentication in preventing unauthorized access."
+                },
+                {
+                    "risk_name": "Potential insider threat",
+                    "category": "personnel",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Insiders with knowledge of reused passwords can exploit them to gain unauthorized access.",
+                    "possible_consequence": "Internal security breaches and data leaks.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence suggests a medium likelihood of insider threats exploiting reused passwords, with a high impact, resulting in a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with unauthorized access and data loss."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential stuffing attack",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "If one service is compromised, attackers can use the same credentials to gain unauthorized access to other services.",
+                    "possible_consequence": "Unauthorized access to multiple systems, data breaches, and potential financial loss.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential stuffing attacks due to password reuse, and the potential consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the significant impact of unauthorized access to privileged accounts and data loss.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing password uniqueness and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Increased impact of password leaks",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Reusing passwords across services increases the impact of a password leak, as attackers can access multiple accounts.",
+                    "possible_consequence": "Compromised accounts across multiple services, leading to data breaches and identity theft.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence suggests a high likelihood of password leaks having a widespread impact due to password reuse, resulting in a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by emphasizing the severe consequences of data loss and unauthorized access.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing password uniqueness and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Lack of password uniqueness enforcement",
+                    "category": "processes_and_procedures",
+                    "evidence": "The same password may not be used more than once.",
+                    "description": "The organization does not enforce password uniqueness, allowing users to reuse passwords across systems.",
+                    "possible_consequence": "Increased risk of credential stuffing attacks and unauthorized access.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of password reuse due to lack of enforcement, but the potential impact is high, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with unauthorized access and data loss.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing password uniqueness and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Weak password management practices",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Users reusing passwords indicates weak password management practices within the organization.",
+                    "possible_consequence": "Higher likelihood of successful attacks due to poor password hygiene.",
+                    "likelihood": "High",
+                    "impact": "Medium",
+                    "severity": "High",
+                    "analysis_justification": "The evidence suggests a high likelihood of successful attacks due to weak password management, with a medium impact, resulting in a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by emphasizing the importance of secure password practices to prevent unauthorized access.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing password uniqueness and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Potential unauthorized access to privileged accounts",
+                    "category": "system_configuration",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "If a privileged account uses the same password as other services, it increases the risk of unauthorized access.",
+                    "possible_consequence": "Compromise of privileged accounts, leading to severe security breaches.",
+                    "likelihood": "Medium",
+                    "impact": "Very High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access to privileged accounts due to password reuse, but the potential impact is very high, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the significant impact of unauthorized access to privileged accounts.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing password uniqueness and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Inadequate password reset procedures",
+                    "category": "processes_and_procedures",
+                    "evidence": "Sufficiently secure procedures are in place within the organisation to reset or change passwords.",
+                    "description": "If password reset procedures are not robust, reused passwords can be easily exploited.",
+                    "possible_consequence": "Unauthorized access to accounts and systems.",
+                    "likelihood": "Low",
+                    "impact": "Medium",
+                    "severity": "Low",
+                    "analysis_justification": "The evidence suggests a low likelihood of inadequate password reset procedures, with a medium impact, resulting in a low risk level.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": true,
+                    "priority": "Low",
+                    "treatment_decision": "retained",
+                    "evaluation_justification": "The risk is acceptable because its severity is low. It can be retained with monitoring."
+                },
+                {
+                    "risk_name": "Lack of multi-factor authentication enforcement",
+                    "category": "system_configuration",
+                    "evidence": "Multi-factor authentication is used to protect privileged accounts from external attackers.",
+                    "description": "If multi-factor authentication is not enforced for all accounts, reused passwords pose a higher risk.",
+                    "possible_consequence": "Increased likelihood of unauthorized access to accounts.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access due to lack of multi-factor authentication enforcement, with a high impact, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by emphasizing the importance of multi-factor authentication in preventing unauthorized access.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing multi-factor authentication for all accounts."
+                },
+                {
+                    "risk_name": "Potential insider threat",
+                    "category": "personnel",
+                    "evidence": "User reuses same password across all services.",
+                    "description": "Insiders with knowledge of reused passwords can exploit them to gain unauthorized access.",
+                    "possible_consequence": "Internal security breaches and data leaks.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence suggests a medium likelihood of insider threats exploiting reused passwords, with a high impact, resulting in a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with unauthorized access and data loss.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing password uniqueness and implementing multi-factor authentication."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 2,
+        "scenario": "I use the same password for every service. At work, I use a company-issued computer where I have administrative privileges.",
+        "facts": [
+            "user reuses same password across all services",
+            "password is used for work accounts",
+            "user has administrative privileges on work computer"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential Compromise Across Services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise. If one service is breached, attackers can use the same credentials to access other services.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, potential data breaches, and identity theft."
+                },
+                {
+                    "risk_name": "Work Account Compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts as for other services increases the risk of unauthorized access to work-related systems and data.",
+                    "possible_consequence": "Data breaches, loss of sensitive information, and potential financial loss for the organization."
+                },
+                {
+                    "risk_name": "Elevated Privilege Abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or abuse of those privileges, especially if the user's credentials are compromised.",
+                    "possible_consequence": "Unauthorized changes to system configurations, installation of malicious software, and potential data breaches."
+                },
+                {
+                    "risk_name": "Credential Compromise with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services and user has administrative privileges on work computer",
+                    "description": "Reusing the same password across services, combined with administrative privileges, significantly increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization."
+                },
+                {
+                    "risk_name": "Work Account Compromise with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "password is used for work accounts and user has administrative privileges on work computer",
+                    "description": "Using the same password for work accounts, especially with administrative privileges, increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization."
+                },
+                {
+                    "risk_name": "Credential Compromise Across Services with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, password is used for work accounts, and user has administrative privileges on work computer",
+                    "description": "Reusing the same password across all services, using it for work accounts, and having administrative privileges significantly increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential Compromise Across Services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise. If one service is breached, attackers can use the same credentials to access other services.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, potential data breaches, and identity theft.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation."
+                },
+                {
+                    "risk_name": "Work Account Compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts as for other services increases the risk of unauthorized access to work-related systems and data.",
+                    "possible_consequence": "Data breaches, loss of sensitive information, and potential financial loss for the organization.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of work account compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation."
+                },
+                {
+                    "risk_name": "Elevated Privilege Abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or abuse of those privileges, especially if the user's credentials are compromised.",
+                    "possible_consequence": "Unauthorized changes to system configurations, installation of malicious software, and potential data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of privilege abuse, but the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Credential Compromise with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services and user has administrative privileges on work computer",
+                    "description": "Reusing the same password across services, combined with administrative privileges, significantly increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise with administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation."
+                },
+                {
+                    "risk_name": "Work Account Compromise with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "password is used for work accounts and user has administrative privileges on work computer",
+                    "description": "Using the same password for work accounts, especially with administrative privileges, increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of work account compromise with administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation."
+                },
+                {
+                    "risk_name": "Credential Compromise Across Services with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, password is used for work accounts, and user has administrative privileges on work computer",
+                    "description": "Reusing the same password across all services, using it for work accounts, and having administrative privileges significantly increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization.",
+                    "likelihood": "Very High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a very high likelihood of credential compromise with administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential Compromise Across Services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise. If one service is breached, attackers can use the same credentials to access other services.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, potential data breaches, and identity theft.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing password management policies and educating users on the risks of password reuse."
+                },
+                {
+                    "risk_name": "Work Account Compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts as for other services increases the risk of unauthorized access to work-related systems and data.",
+                    "possible_consequence": "Data breaches, loss of sensitive information, and potential financial loss for the organization.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of work account compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for work accounts and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Elevated Privilege Abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or abuse of those privileges, especially if the user's credentials are compromised.",
+                    "possible_consequence": "Unauthorized changes to system configurations, installation of malicious software, and potential data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of privilege abuse, but the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by restricting administrative privileges to only those necessary for job roles and monitoring privileged account usage."
+                },
+                {
+                    "risk_name": "Credential Compromise with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services and user has administrative privileges on work computer",
+                    "description": "Reusing the same password across services, combined with administrative privileges, significantly increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "severity": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise with administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing strong password policies, multi-factor authentication, and limiting administrative privileges."
+                },
+                {
+                    "risk_name": "Work Account Compromise with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "password is used for work accounts and user has administrative privileges on work computer",
+                    "description": "Using the same password for work accounts, especially with administrative privileges, increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "severity": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of work account compromise with administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing unique and strong passwords, multi-factor authentication, and minimizing administrative privileges."
+                },
+                {
+                    "risk_name": "Credential Compromise Across Services with Administrative Privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, password is used for work accounts, and user has administrative privileges on work computer",
+                    "description": "Reusing the same password across all services, using it for work accounts, and having administrative privileges significantly increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Severe data breaches, unauthorized system changes, and potential financial and reputational damage to the organization.",
+                    "likelihood": "Very High",
+                    "impact": "Very High",
+                    "severity": "Very High",
+                    "analysis_justification": "The evidence indicates a very high likelihood of credential compromise with administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems through password revocation.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by implementing strict password policies, multi-factor authentication, and minimizing administrative privileges while monitoring privileged access."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 3,
+        "scenario": "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work-related tasks, such as accessing emails and documents.",
+        "facts": [
+            "user reuses same password across all services",
+            "password is used for work accounts",
+            "user has administrative privileges on work computer",
+            "user has company Android phone for work tasks"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential compromise across services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise if one service is breached.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, including work-related services."
+                },
+                {
+                    "risk_name": "Work account compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts increases the risk of unauthorized access to sensitive work-related data.",
+                    "possible_consequence": "Data breaches, loss of sensitive information, and potential legal consequences."
+                },
+                {
+                    "risk_name": "Elevated privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or accidental changes to critical system settings.",
+                    "possible_consequence": "System instability, unauthorized changes, and potential security breaches."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to device security, including outdated software or unauthorized access.",
+                    "possible_consequence": "Data leakage, unauthorized access to company resources, and malware infections."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing passwords across services while having administrative privileges increases the risk of unauthorized access to critical systems.",
+                    "possible_consequence": "Compromise of administrative accounts, system-wide breaches, and data loss."
+                },
+                {
+                    "risk_name": "Work account compromise with administrative privileges", 
+                    "category": "administrative_routines",
+                    "evidence": "password is used for work accounts, user has administrative privileges on work computer",
+                    "description": "Using the same password for work accounts while having administrative privileges increases the risk of unauthorized access to sensitive systems.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized changes to systems, and data breaches."
+                },
+                {
+                    "risk_name": "Mobile device compromise with administrative privileges",  
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks, user has administrative privileges on work computer",
+                    "description": "Using a company Android phone for work tasks while having administrative privileges increases the risk of unauthorized access to critical systems via the mobile device.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized access to systems, and data breaches."
+                },
+                {
+                    "risk_name": "Password reuse with mobile device", 
+                    "category": "hardware_software_communication",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while using a company Android phone increases the risk of unauthorized access to both the device and other services.",
+                    "possible_consequence": "Compromise of the mobile device, unauthorized access to accounts, and data breaches."
+                },
+                {
+                    "risk_name": "Work account compromise with mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "password is used for work accounts, user has company Android phone for work tasks",
+                    "description": "Using the same password for work accounts while using a company Android phone increases the risk of unauthorized access to work-related data via the device.",
+                    "possible_consequence": "Compromise of work accounts, data leakage, and unauthorized access to company resources."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges and mobile device", 
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while having administrative privileges and using a company Android phone increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized access to systems, and data breaches."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential compromise across services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise if one service is breached.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, including work-related services.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Work account compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts increases the risk of unauthorized access to sensitive work-related data.",
+                    "possible_consequence": "Data breaches, loss of sensitive information, and potential legal consequences.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to work accounts, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Elevated privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or accidental changes to critical system settings.",
+                    "possible_consequence": "System instability, unauthorized changes, and potential security breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of misuse or accidental changes, but the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to device security, including outdated software or unauthorized access.",
+                    "possible_consequence": "Data leakage, unauthorized access to company resources, and malware infections.",
+                    "likelihood": "Medium",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "The evidence indicates a medium likelihood of security risks related to the mobile device, and the possible consequences are moderate, leading to a medium risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with using personal devices for work-related tasks."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing passwords across services while having administrative privileges increases the risk of unauthorized access to critical systems.",
+                    "possible_consequence": "Compromise of administrative accounts, system-wide breaches, and data loss.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to critical systems, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Work account compromise with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "password is used for work accounts, user has administrative privileges on work computer",
+                    "description": "Using the same password for work accounts while having administrative privileges increases the risk of unauthorized access to sensitive systems.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized changes to systems, and data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to sensitive systems, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Mobile device compromise with administrative privileges",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks, user has administrative privileges on work computer",
+                    "description": "Using a company Android phone for work tasks while having administrative privileges increases the risk of unauthorized access to critical systems via the mobile device.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized access to systems, and data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access via the mobile device, but the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with using personal devices for work-related tasks."
+                },
+                {
+                    "risk_name": "Password reuse with mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while using a company Android phone increases the risk of unauthorized access to both the device and other services.",
+                    "possible_consequence": "Compromise of the mobile device, unauthorized access to accounts, and data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to both the device and other services, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Work account compromise with mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "password is used for work accounts, user has company Android phone for work tasks",
+                    "description": "Using the same password for work accounts while using a company Android phone increases the risk of unauthorized access to work-related data via the device.",
+                    "possible_consequence": "Compromise of work accounts, data leakage, and unauthorized access to company resources.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to work-related data via the device, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges and mobile device",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while having administrative privileges and using a company Android phone increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized access to systems, and data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to critical systems and data, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential compromise across services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise if one service is breached.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, including work-related services.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing password management policies and multi-factor authentication to mitigate the risk of credential compromise."
+                },
+                {
+                    "risk_name": "Work account compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts increases the risk of unauthorized access to sensitive work-related data.",
+                    "possible_consequence": "Data breaches, loss of sensitive information, and potential legal consequences.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to work accounts, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for work accounts and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Elevated privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or accidental changes to critical system settings.",
+                    "possible_consequence": "System instability, unauthorized changes, and potential security breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of misuse or accidental changes, but the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing least privilege principles and monitoring administrative activities."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to device security, including outdated software or unauthorized access.",
+                    "possible_consequence": "Data leakage, unauthorized access to company resources, and malware infections.",
+                    "likelihood": "Medium",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "The evidence indicates a medium likelihood of security risks related to the mobile device, and the possible consequences are moderate, leading to a medium risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with using personal devices for work-related tasks.",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is acceptable but should be reduced by implementing mobile device management (MDM) solutions and ensuring regular software updates."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing passwords across services while having administrative privileges increases the risk of unauthorized access to critical systems.",
+                    "possible_consequence": "Compromise of administrative accounts, system-wide breaches, and data loss.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to critical systems, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing unique passwords for administrative accounts and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Work account compromise with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "password is used for work accounts, user has administrative privileges on work computer",
+                    "description": "Using the same password for work accounts while having administrative privileges increases the risk of unauthorized access to sensitive systems.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized changes to systems, and data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to sensitive systems, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing unique passwords for work accounts and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Mobile device compromise with administrative privileges",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks, user has administrative privileges on work computer",
+                    "description": "Using a company Android phone for work tasks while having administrative privileges increases the risk of unauthorized access to critical systems via the mobile device.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized access to systems, and data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access via the mobile device, but the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with using personal devices for work-related tasks.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing mobile device management (MDM) solutions and enforcing strong authentication mechanisms."
+                },
+                {
+                    "risk_name": "Password reuse with mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while using a company Android phone increases the risk of unauthorized access to both the device and other services.",
+                    "possible_consequence": "Compromise of the mobile device, unauthorized access to accounts, and data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to both the device and other services, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords and implementing multi-factor authentication on the mobile device."
+                },
+                {
+                    "risk_name": "Work account compromise with mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "password is used for work accounts, user has company Android phone for work tasks",
+                    "description": "Using the same password for work accounts while using a company Android phone increases the risk of unauthorized access to work-related data via the device.",
+                    "possible_consequence": "Compromise of work accounts, data leakage, and unauthorized access to company resources.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to work-related data via the device, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for work accounts and implementing multi-factor authentication on the mobile device."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges and mobile device",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while having administrative privileges and using a company Android phone increases the risk of unauthorized access to critical systems and data.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized access to systems, and data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access to critical systems and data, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks of password reuse and its potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing unique passwords for administrative accounts, implementing multi-factor authentication, and managing mobile device security."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 4,
+        "scenario": "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work tasks. Our company relies on cloud services such as Google Drive to store and share data.",
+        "facts": [
+            "user reuses same password across all services",
+            "password is used for work accounts",
+            "user has administrative privileges on work computer",
+            "user has company Android phone for work tasks",
+            "company relies on cloud services such as Google Drive to store and share data"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Password reuse across services",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Using the same password across multiple services increases the risk of credential compromise.",
+                    "possible_consequence": "If one service is breached, attackers can gain access to all other services using the same password."
+                },
+                {
+                    "risk_name": "Work account password reuse",
+                    "category": "system_configuration",
+                    "evidence": "password is used for work accounts",
+                    "description": "Reusing passwords for work accounts increases the risk of unauthorized access to sensitive work data.",
+                    "possible_consequence": "Compromise of work-related accounts and potential data breaches."
+                },
+                {
+                    "risk_name": "Administrative privileges misuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges increases the risk of accidental or intentional misuse.",
+                    "possible_consequence": "Unauthorized changes to system settings, installation of malicious software, or data loss."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to mobile device security.",
+                    "possible_consequence": "Potential compromise of sensitive work data if the device is lost, stolen, or hacked."
+                },
+                {
+                    "risk_name": "Cloud service dependency",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Relying on cloud services introduces risks related to data security and availability.",
+                    "possible_consequence": "Data breaches, loss of data control, and service outages impacting business operations."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing passwords while having administrative privileges significantly increases the risk of system compromise.",
+                    "possible_consequence": "Full system compromise, unauthorized access to sensitive data, and potential data loss."
+                },
+                {
+                    "risk_name": "Password reuse on mobile device",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords on a mobile device increases the risk of unauthorized access to both the device and associated services.",
+                    "possible_consequence": "Compromise of the mobile device and associated work accounts, leading to data breaches."
+                },
+                {
+                    "risk_name": "Cloud service dependency with administrative privileges", 
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data, user has administrative privileges on work computer",
+                    "description": "Relying on cloud services while having administrative privileges increases the risk of data exposure and unauthorized access.",
+                    "possible_consequence": "Unauthorized access to sensitive cloud-stored data and potential data breaches."
+                },
+                {
+                    "risk_name": "Password reuse with cloud service dependency", 
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reusing passwords while relying on cloud services increases the risk of unauthorized access to cloud-stored data.",
+                    "possible_consequence": "Compromise of cloud-stored data and potential data breaches."
+                },
+                {
+                    "risk_name": "Administrative privileges on mobile device", 
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer, user has company Android phone for work tasks",
+                    "description": "Having administrative privileges on a mobile device increases the risk of unauthorized access and misuse.",
+                    "possible_consequence": "Compromise of the mobile device and associated work accounts, leading to data breaches."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Password reuse across services",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Using the same password across multiple services increases the risk of credential compromise.",
+                    "possible_consequence": "If one service is breached, attackers can gain access to all other services using the same password.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Work account password reuse",
+                    "category": "system_configuration",
+                    "evidence": "password is used for work accounts",
+                    "description": "Reusing passwords for work accounts increases the risk of unauthorized access to sensitive work data.",
+                    "possible_consequence": "Compromise of work-related accounts and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Administrative privileges misuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges increases the risk of accidental or intentional misuse.",
+                    "possible_consequence": "Unauthorized changes to system settings, installation of malicious software, or data loss.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of misuse due to administrative privileges, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to mobile device security.",
+                    "possible_consequence": "Potential compromise of sensitive work data if the device is lost, stolen, or hacked.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of compromise due to mobile device security risks, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the importance of secure baseline configuration and prevention of unauthorized use on mobile devices."
+                },
+                {
+                    "risk_name": "Cloud service dependency",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Relying on cloud services introduces risks related to data security and availability.",
+                    "possible_consequence": "Data breaches, loss of data control, and service outages impacting business operations.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of data breaches or service outages due to cloud service dependency, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the importance of training users to use cloud services securely."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing passwords while having administrative privileges significantly increases the risk of system compromise.",
+                    "possible_consequence": "Full system compromise, unauthorized access to sensitive data, and potential data loss.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of system compromise due to password reuse and administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems."
+                },
+                {
+                    "risk_name": "Password reuse on mobile device",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords on a mobile device increases the risk of unauthorized access to both the device and associated services.",
+                    "possible_consequence": "Compromise of the mobile device and associated work accounts, leading to data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of compromise due to password reuse on a mobile device, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the importance of secure mobile device configuration."
+                },
+                {
+                    "risk_name": "Cloud service dependency with administrative privileges",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data, user has administrative privileges on work computer",
+                    "description": "Relying on cloud services while having administrative privileges increases the risk of data exposure and unauthorized access.",
+                    "possible_consequence": "Unauthorized access to sensitive cloud-stored data and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access due to cloud service dependency and administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the importance of training users to use cloud services securely and the risks associated with administrative privileges."
+                },
+                {
+                    "risk_name": "Password reuse with cloud service dependency",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reusing passwords while relying on cloud services increases the risk of unauthorized access to cloud-stored data.",
+                    "possible_consequence": "Compromise of cloud-stored data and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access due to password reuse and cloud service dependency, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the importance of training users to use cloud services securely."
+                },
+                {
+                    "risk_name": "Administrative privileges on mobile device",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer, user has company Android phone for work tasks",
+                    "description": "Having administrative privileges on a mobile device increases the risk of unauthorized access and misuse.",
+                    "possible_consequence": "Compromise of the mobile device and associated work accounts, leading to data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access due to administrative privileges on a mobile device, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Password reuse across services",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Using the same password across multiple services increases the risk of credential compromise.",
+                    "possible_consequence": "If one service is breached, attackers can gain access to all other services using the same password.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of credential compromise due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing password management policies and multi-factor authentication to mitigate the risk of credential compromise."
+                },
+                {
+                    "risk_name": "Work account password reuse",
+                    "category": "system_configuration",
+                    "evidence": "password is used for work accounts",
+                    "description": "Reusing passwords for work accounts increases the risk of unauthorized access to sensitive work data.",
+                    "possible_consequence": "Compromise of work-related accounts and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access due to password reuse, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for work accounts and implementing security awareness training."
+                },
+                {
+                    "risk_name": "Administrative privileges misuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges increases the risk of accidental or intentional misuse.",
+                    "possible_consequence": "Unauthorized changes to system settings, installation of malicious software, or data loss.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of misuse due to administrative privileges, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by limiting administrative privileges to only those who require them and implementing monitoring controls."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to mobile device security.",
+                    "possible_consequence": "Potential compromise of sensitive work data if the device is lost, stolen, or hacked.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of compromise due to mobile device security risks, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the importance of secure baseline configuration and prevention of unauthorized use on mobile devices.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing mobile device management (MDM) solutions and enforcing security policies on mobile devices."
+                },
+                {
+                    "risk_name": "Cloud service dependency",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Relying on cloud services introduces risks related to data security and availability.",
+                    "possible_consequence": "Data breaches, loss of data control, and service outages impacting business operations.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of data breaches or service outages due to cloud service dependency, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the importance of training users to use cloud services securely.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing data encryption, access controls, and regular security assessments of cloud services."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing passwords while having administrative privileges significantly increases the risk of system compromise.",
+                    "possible_consequence": "Full system compromise, unauthorized access to sensitive data, and potential data loss.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of system compromise due to password reuse and administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the potential for misuse of IT systems.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing unique passwords, limiting administrative privileges, and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Password reuse on mobile device",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords on a mobile device increases the risk of unauthorized access to both the device and associated services.",
+                    "possible_consequence": "Compromise of the mobile device and associated work accounts, leading to data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of compromise due to password reuse on a mobile device, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the importance of secure mobile device configuration.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords and implementing mobile device security controls."
+                },
+                {
+                    "risk_name": "Cloud service dependency with administrative privileges",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data, user has administrative privileges on work computer",
+                    "description": "Relying on cloud services while having administrative privileges increases the risk of data exposure and unauthorized access.",
+                    "possible_consequence": "Unauthorized access to sensitive cloud-stored data and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access due to cloud service dependency and administrative privileges, and the possible consequences are very severe, leading to a very high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the importance of training users to use cloud services securely and the risks associated with administrative privileges.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by implementing strict access controls, monitoring cloud activity, and limiting administrative privileges."
+                },
+                {
+                    "risk_name": "Password reuse with cloud service dependency",
+                    "category": "system_configuration",
+                    "evidence": "user reuses same password across all services, company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reusing passwords while relying on cloud services increases the risk of unauthorized access to cloud-stored data.",
+                    "possible_consequence": "Compromise of cloud-stored data and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of unauthorized access due to password reuse and cloud service dependency, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "The E-ITS context supports the analysis by highlighting the risks associated with password reuse and the importance of training users to use cloud services securely.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords and implementing multi-factor authentication for cloud services."
+                },
+                {
+                    "risk_name": "Administrative privileges on mobile device",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer, user has company Android phone for work tasks",
+                    "description": "Having administrative privileges on a mobile device increases the risk of unauthorized access and misuse.",
+                    "possible_consequence": "Compromise of the mobile device and associated work accounts, leading to data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a medium likelihood of unauthorized access due to administrative privileges on a mobile device, and the possible consequences are severe, leading to a high risk level.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by limiting administrative privileges on mobile devices and implementing mobile device management (MDM) solutions."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 5,
+        "scenario": "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work tasks. Our company relies on cloud services such as Google Drive to store and share data. Employees regularly access these systems to collaborate and manage files.",
+        "facts": [
+            "user reuses same password across all services",
+            "password is used for work accounts",
+            "user has administrative privileges on work computer",
+            "user has company Android phone for work tasks",
+            "company relies on cloud services like Google Drive",
+            "employees access cloud services to collaborate and manage files"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential compromise across services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise if one service is breached.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, including work-related services, leading to data breaches and potential financial loss."
+                },
+                {
+                    "risk_name": "Work account compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts as other services increases the risk of work account compromise if the password is leaked.",
+                    "possible_consequence": "Unauthorized access to work accounts, potential data breaches, and disruption of business operations."
+                },
+                {
+                    "risk_name": "Elevated privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or accidental damage to the system.",
+                    "possible_consequence": "Unauthorized changes to system settings, installation of malicious software, and potential data loss."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to mobile device security, such as malware or unauthorized access.",
+                    "possible_consequence": "Compromise of sensitive company data, unauthorized access to work-related applications, and potential data breaches."
+                },
+                {
+                    "risk_name": "Cloud service dependency risk",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services like Google Drive",
+                    "description": "Relying on cloud services introduces risks related to service availability, data security, and compliance.",
+                    "possible_consequence": "Data loss, service outages, and potential non-compliance with data protection regulations."
+                },
+                {
+                    "risk_name": "Collaboration tool security risk",
+                    "category": "system_configuration",
+                    "evidence": "employees access cloud services to collaborate and manage files",
+                    "description": "Accessing cloud services for collaboration and file management introduces risks related to data security and access control.",
+                    "possible_consequence": "Unauthorized access to sensitive files, data breaches, and potential loss of intellectual property."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing the same password across services while having administrative privileges increases the risk of unauthorized access to critical systems.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized system changes, and potential data breaches."
+                },
+                {
+                    "risk_name": "Cloud service access with reused passwords",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses same password across all services, company relies on cloud services like Google Drive",
+                    "description": "Reusing passwords across services while relying on cloud services increases the risk of unauthorized access to cloud-stored data.",
+                    "possible_consequence": "Unauthorized access to cloud services, data breaches, and potential loss of sensitive information."
+                },
+                {
+                    "risk_name": "Mobile device access with reused passwords",
+                    "category": "hardware_software_communication",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while using a company Android phone increases the risk of unauthorized access to work-related applications.",
+                    "possible_consequence": "Compromise of mobile device security, unauthorized access to work data, and potential data breaches."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential compromise across services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise if one service is breached.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, including work-related services, leading to data breaches and potential financial loss.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse is a common behavior that significantly increases the risk of credential compromise if any one service is breached, leading to widespread unauthorized access.",
+                    "eits_support": "The E-ITS context highlights the risk of password reuse leading to misuse of IT systems through password revocation, supporting the high likelihood and impact."
+                },
+                {
+                    "risk_name": "Work account compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts as other services increases the risk of work account compromise if the password is leaked.",
+                    "possible_consequence": "Unauthorized access to work accounts, potential data breaches, and disruption of business operations.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of work account compromise due to password reuse, with severe consequences for business operations.",
+                    "eits_support": "The E-ITS context supports this by noting the risk of password reuse in working environments leading to IT system misuse."
+                },
+                {
+                    "risk_name": "Elevated privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or accidental damage to the system.",
+                    "possible_consequence": "Unauthorized changes to system settings, installation of malicious software, and potential data loss.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Administrative privileges increase the potential impact of misuse or errors, though the likelihood depends on user behavior.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to mobile device security, such as malware or unauthorized access.",
+                    "possible_consequence": "Compromise of sensitive company data, unauthorized access to work-related applications, and potential data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Mobile devices are susceptible to security risks, especially if not properly managed, leading to potentially high impact breaches.",
+                    "eits_support": "The E-ITS context discusses risks from using personal devices for work, including security vulnerabilities and unauthorized access."
+                },
+                {
+                    "risk_name": "Cloud service dependency risk",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services like Google Drive",
+                    "description": "Relying on cloud services introduces risks related to service availability, data security, and compliance.",
+                    "possible_consequence": "Data loss, service outages, and potential non-compliance with data protection regulations.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Dependence on cloud services introduces risks of data loss and outages, with significant business impact.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Collaboration tool security risk",
+                    "category": "system_configuration",
+                    "evidence": "employees access cloud services to collaborate and manage files",
+                    "description": "Accessing cloud services for collaboration and file management introduces risks related to data security and access control.",
+                    "possible_consequence": "Unauthorized access to sensitive files, data breaches, and potential loss of intellectual property.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Use of cloud services for collaboration can lead to unauthorized access and data breaches if not properly secured.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing the same password across services while having administrative privileges increases the risk of unauthorized access to critical systems.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized system changes, and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Combining password reuse with administrative privileges dramatically increases both the likelihood and impact of a security breach.",
+                    "eits_support": "The E-ITS context highlights the risks of password reuse and IT system misuse, supporting the severity of this combination."
+                },
+                {
+                    "risk_name": "Cloud service access with reused passwords",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses same password across all services, company relies on cloud services like Google Drive",
+                    "description": "Reusing passwords across services while relying on cloud services increases the risk of unauthorized access to cloud-stored data.",
+                    "possible_consequence": "Unauthorized access to cloud services, data breaches, and potential loss of sensitive information.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse exacerbates the risks associated with cloud service dependency, leading to potential high-impact breaches.",
+                    "eits_support": "No direct E-ITS support found."
+                },
+                {
+                    "risk_name": "Mobile device access with reused passwords",
+                    "category": "hardware_software_communication",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while using a company Android phone increases the risk of unauthorized access to work-related applications.",
+                    "possible_consequence": "Compromise of mobile device security, unauthorized access to work data, and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse combined with mobile device usage significantly increases the risk of unauthorized access and data breaches.",
+                    "eits_support": "The E-ITS context discusses risks from using personal devices and password reuse, supporting the high risk level."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential compromise across services",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Reusing the same password across multiple services increases the risk of credential compromise if one service is breached.",
+                    "possible_consequence": "Unauthorized access to multiple accounts, including work-related services, leading to data breaches and potential financial loss.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Password reuse is a common behavior that significantly increases the risk of credential compromise if any one service is breached, leading to widespread unauthorized access.",
+                    "eits_support": "The E-ITS context highlights the risk of password reuse leading to misuse of IT systems through password revocation, supporting the high likelihood and impact.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing password management policies and multi-factor authentication to mitigate the risk of credential compromise."
+                },
+                {
+                    "risk_name": "Work account compromise",
+                    "category": "personnel",
+                    "evidence": "password is used for work accounts",
+                    "description": "Using the same password for work accounts as other services increases the risk of work account compromise if the password is leaked.",
+                    "possible_consequence": "Unauthorized access to work accounts, potential data breaches, and disruption of business operations.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "The evidence indicates a high likelihood of work account compromise due to password reuse, with severe consequences for business operations.",
+                    "eits_support": "The E-ITS context supports this by noting the risk of password reuse in working environments leading to IT system misuse.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for work accounts and implementing additional security measures like multi-factor authentication."
+                },
+                {
+                    "risk_name": "Elevated privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on work computer",
+                    "description": "Having administrative privileges on a work computer increases the risk of misuse or accidental damage to the system.",
+                    "possible_consequence": "Unauthorized changes to system settings, installation of malicious software, and potential data loss.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Administrative privileges increase the potential impact of misuse or errors, though the likelihood depends on user behavior.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing least privilege principles and monitoring administrative activities."
+                },
+                {
+                    "risk_name": "Mobile device security risk",
+                    "category": "hardware_software_communication",
+                    "evidence": "user has company Android phone for work tasks",
+                    "description": "Using a company Android phone for work tasks introduces risks related to mobile device security, such as malware or unauthorized access.",
+                    "possible_consequence": "Compromise of sensitive company data, unauthorized access to work-related applications, and potential data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Mobile devices are susceptible to security risks, especially if not properly managed, leading to potentially high impact breaches.",
+                    "eits_support": "The E-ITS context discusses risks from using personal devices for work, including security vulnerabilities and unauthorized access.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing mobile device management (MDM) solutions and enforcing security policies on mobile devices."
+                },
+                {
+                    "risk_name": "Cloud service dependency risk",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services like Google Drive",
+                    "description": "Relying on cloud services introduces risks related to service availability, data security, and compliance.",
+                    "possible_consequence": "Data loss, service outages, and potential non-compliance with data protection regulations.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Dependence on cloud services introduces risks of data loss and outages, with significant business impact.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing data backup strategies and ensuring compliance with data protection regulations."
+                },
+                {
+                    "risk_name": "Collaboration tool security risk",
+                    "category": "system_configuration",
+                    "evidence": "employees access cloud services to collaborate and manage files",
+                    "description": "Accessing cloud services for collaboration and file management introduces risks related to data security and access control.",
+                    "possible_consequence": "Unauthorized access to sensitive files, data breaches, and potential loss of intellectual property.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Use of cloud services for collaboration can lead to unauthorized access and data breaches if not properly secured.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by implementing access control measures and encryption for sensitive files."
+                },
+                {
+                    "risk_name": "Password reuse with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services, user has administrative privileges on work computer",
+                    "description": "Reusing the same password across services while having administrative privileges increases the risk of unauthorized access to critical systems.",
+                    "possible_consequence": "Compromise of administrative accounts, unauthorized system changes, and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "severity": "Very High",
+                    "analysis_justification": "Combining password reuse with administrative privileges dramatically increases both the likelihood and impact of a security breach.",
+                    "eits_support": "The E-ITS context highlights the risks of password reuse and IT system misuse, supporting the severity of this combination.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is very high. It should be reduced by enforcing unique passwords for administrative accounts and implementing multi-factor authentication."
+                },
+                {
+                    "risk_name": "Cloud service access with reused passwords",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses same password across all services, company relies on cloud services like Google Drive",
+                    "description": "Reusing passwords across services while relying on cloud services increases the risk of unauthorized access to cloud-stored data.",
+                    "possible_consequence": "Unauthorized access to cloud services, data breaches, and potential loss of sensitive information.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Password reuse exacerbates the risks associated with cloud service dependency, leading to potential high-impact breaches.",
+                    "eits_support": "No direct E-ITS support found.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for cloud services and implementing additional security measures like multi-factor authentication."
+                },
+                {
+                    "risk_name": "Mobile device access with reused passwords",
+                    "category": "hardware_software_communication",
+                    "evidence": "user reuses same password across all services, user has company Android phone for work tasks",
+                    "description": "Reusing passwords across services while using a company Android phone increases the risk of unauthorized access to work-related applications.",
+                    "possible_consequence": "Compromise of mobile device security, unauthorized access to work data, and potential data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "severity": "High",
+                    "analysis_justification": "Password reuse combined with mobile device usage significantly increases the risk of unauthorized access and data breaches.",
+                    "eits_support": "The E-ITS context discusses risks from using personal devices and password reuse, supporting the high risk level.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "The risk is not acceptable because its severity is high. It should be reduced by enforcing unique passwords for mobile devices and implementing mobile device management (MDM) solutions."
+                }
+            ]
+        }
+    }
+]

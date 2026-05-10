@@ -1,0 +1,260 @@
+Evaluating consistency for test1.json
+Consistency Check Response:
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of password uniqueness enforcement",
+      "reason": "Scenario 2 focuses on the vulnerability of reuse but does not specifically address the organizational failure to enforce uniqueness policies."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Weak password management",
+      "reason": "Scenario 2 describes the state of password reuse but does not explicitly categorize it as a failure of password management best practices/hygiene."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential insider threat",
+      "reason": "Scenario 2 focuses on external attackers and general compromise, missing the specific risk of an internal actor leveraging reused passwords."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased risk of lateral movement",
+      "reason": "While system compromise is mentioned, the specific tactical risk of lateral movement across different systems using the same credentials is not explicitly detailed."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of multi-factor authentication",
+      "reason": "Scenario 2 does not mention MFA or the lack thereof as a contributing factor to the risk."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate password policy enforcement",
+      "reason": "Scenario 2 describes the risk of reuse but not the underlying failure of policy enforcement."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased risk of identity theft",
+      "reason": "Scenario 2 focuses on system and account compromise rather than the specific outcome of identity theft/impersonation."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing attack",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe the risk of using compromised credentials from one service to access others."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased impact of password leaks",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe how reusing passwords increases the impact when a breach occurs."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential for widespread account compromise",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe the risk of multiple accounts being compromised due to password reuse."
+    }
+  ]
+}
+Missing risks: 7
+Matched risks: 3
+Scenario 1 risks: 10
+Evaluating consistency for test2.json
+Consistency Check Response:
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of password uniqueness enforcement",
+      "reason": "Scenario 2 focuses on the user's behavior and the resulting risks, but no longer mentions the organizational failure to enforce uniqueness through processes."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased impact of password leaks",
+      "reason": "While password reuse is mentioned, the specific risk regarding system configurations failing to discourage reuse is not present."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password policy non-compliance",
+      "reason": "Scenario 2 does not mention organizational structure or the lack of enforcement mechanisms for password policies."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing vulnerability",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse risk",
+      "reason": "Both describe the risk of unauthorized access via credential stuffing due to password reuse across services."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Weak authentication practices",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Weak authentication for administrative accounts",
+      "reason": "Both address the failure of administrative routines to mitigate risks associated with weak/reused passwords."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient user awareness",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse risk",
+      "reason": "Both are categorized under 'personnel' and stem from the user's behavior of reusing passwords."
+    }
+  ]
+}
+Missing risks: 3
+Matched risks: 3
+Scenario 1 risks: 6
+Evaluating consistency for test3.json
+Consistency Check Response:
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of password uniqueness enforcement",
+      "reason": "Scenario 2 focuses on the technical impact of password reuse but does not mention the organizational failure to enforce uniqueness policies."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate password management",
+      "reason": "Scenario 2 focuses on the technical impact of password reuse but does not mention the lack of organizational procedures for password management."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing attack",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Credential compromise across services",
+      "reason": "Both describe the risk of using leaked credentials from one service to access others due to password reuse."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased impact of password compromise",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Increased attack surface due to password reuse",
+      "reason": "Both describe how reusing passwords across multiple services expands the impact and surface area if a single password is leaked."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential for unauthorized access escalation",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Privilege escalation risk",
+      "reason": "Both describe the risk of an attacker gaining higher privileges because a user with privileged access reused their password."
+    }
+  ]
+}
+Missing risks: 2
+Matched risks: 3
+Scenario 1 risks: 5
+Evaluating consistency for test4.json
+Consistency Check Response:
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Weak password reset procedures",
+      "reason": "Scenario 2 contains no risk addressing the failure of password reset mechanisms to mitigate reused credentials."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate user training",
+      "reason": "Scenario 2 does not mention user education, training, or awareness regarding password management."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of proactive password rotation",
+      "reason": "Scenario 2 does not address the lack of periodic password changes or rotation policies."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing attack",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Credential stuffing attack",
+      "reason": "Exact match in name and core security problem."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse vulnerability",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Default password risk",
+      "reason": "Both describe the vulnerability arising from the failure to enforce unique/strong passwords across services."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of multi-factor authentication",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Inadequate authentication mechanisms",
+      "reason": "Scenario 2 explicitly mentions the lack of multi-factor authentication as part of the inadequate authentication mechanisms."
+    }
+  ]
+}
+Missing risks: 3
+Matched risks: 3
+Scenario 1 risks: 6
+Evaluating consistency for test5.json
+Consistency Check Response:
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of password uniqueness enforcement",
+      "reason": "Scenario 2 focuses on the result of password reuse (compromise) but does not mention the organizational failure to enforce uniqueness policies."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Weak password management practices",
+      "reason": "Scenario 2 describes specific compromise scenarios but does not address the general administrative failure of password management practices."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate password reset procedures",
+      "reason": "No risk in Scenario 2 mentions password reset or change procedures."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of multi-factor authentication enforcement",
+      "reason": "No risk in Scenario 2 mentions the absence or enforcement of multi-factor authentication."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential insider threat",
+      "reason": "Scenario 2 focuses on external attackers using compromised credentials rather than malicious insiders exploiting known passwords."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing attack",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Credential Compromise Across Services",
+      "reason": "Both describe the risk of using credentials from one compromised service to gain access to others."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased impact of password leaks",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Credential Compromise Across Services",
+      "reason": "Both describe how password reuse amplifies the impact of a single leak across multiple accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential unauthorized access to privileged accounts",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Credential Compromise with Administrative Privileges",
+      "reason": "Both describe the specific danger of reused passwords being used to access accounts with high privileges."
+    }
+  ]
+}
+Missing risks: 5
+Matched risks: 3
+Scenario 1 risks: 8

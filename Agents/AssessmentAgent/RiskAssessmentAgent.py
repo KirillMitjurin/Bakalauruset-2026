@@ -7,7 +7,10 @@ from langgraph.checkpoint.memory import MemorySaver
 import uuid
 from langgraph.types import Command
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from RiskEvaluationAgent import risk_evaluation_agent
+from RiskAnalysisAgent import risk_analysis_agent
+from utils import parse_llm_json 
+
 from PersonaAgents.firstPersonaAgent import ask_persona
 from dotenv import load_dotenv
 import json 
@@ -22,6 +25,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.embeddings import FastEmbedEmbeddings
 from typing import Any, Dict
 
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 pdf_path = os.path.join(BASE_DIR, "eits.pdf")
 loader = PyPDFLoader(pdf_path)
@@ -42,81 +47,20 @@ MY_API_KEY = os.getenv('API_TOKEN')
 
 scenarios = [
     "I use the same password for every service." , 
-    "I use the same password for every service. I also use this password for my work accounts. At work, I use a company-issued computer where I have administrative privileges.", 
-    "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work-related tasks, such as accessing emails and documents."
+    "I use the same password for every service. At work, I use a company-issued computer where I have administrative privileges.", 
+    "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work-related tasks, such as accessing emails and documents.",
     "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work tasks. Our company relies on cloud services such as Google Drive to store and share data.",
     "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work tasks. Our company relies on cloud services such as Google Drive to store and share data. Employees regularly access these systems to collaborate and manage files."
 ]
 
 
-def get_eits_context(scenario: str) -> str:
-    docs = retriever.invoke(scenario)
+def get_eits_context(scenario: str, facts: list[str]) -> str:
+    query = scenario + "\n" + "\n".join(facts)
+    docs = retriever.invoke(query)
     return "\n\n".join(
         f"[Page {doc.metadata.get('page', '?')}] {doc.page_content}"
         for doc in docs
     )
-
-FIXED_EITS_QUERIES = [
-    "password security policy",
-    "administrative privileges",
-    "mobile device security",
-    "cloud storage security",
-    "employee responsibilities"
-]
-
-def get_fixed_eits_context() -> str:
-    all_docs = []
-    seen = set()
-    for query in FIXED_EITS_QUERIES:
-        docs = retriever.invoke(query)
-        for doc in docs:
-            key = doc.page_content[:100]
-            if key not in seen:
-                seen.add(key)
-                all_docs.append(doc)
-    return "\n\n".join(
-        f"[Page {doc.metadata.get('page', '?')}] {doc.page_content}"
-        for doc in all_docs
-    )
-
-
-EITS_CONTEXT = get_fixed_eits_context()
-
-RISK_IDENTIFIER_PROMPT = """You are a cybersecurity risk identifier.
-
-CRITICAL RULES:
-- Only identify risks DIRECTLY supported by the facts.
-- Do NOT assume missing information.
-- Do NOT infer additional risks based on general knowledge.
-- Do NOT generate risks unless explicitly supported by a fact.
-- Each risk MUST correspond to exactly ONE fact.
-- If no fact supports the risk → DO NOT include it.
-- Do NOT generate compliance-only risks.
-- Do NOT generate training, policy, or MFA risks unless explicitly stated.
-
-Facts:
-FACTS_PLACEHOLDER
-
-E-ITS context (for explanation only, NOT for generating risks):
-EITS_PLACEHOLDER
-
-Task:
-For each fact, generate exactly ONE risk.
-
-Output:
-{
-  "risks": [
-    {
-      "risk_name": "...",
-      "category": "...",
-      "evidence": "...",
-      "description": "...",
-      "possible_consequence": "...",
-      "eits_reference": []
-    }
-  ]
-}
-}"""
 
 RISK_EXTRACTOR_SYSTEM_PROMPT = """Extract all security-relevant facts from the description as a list.
 Each fact should be atomic (one thing per fact).
@@ -130,61 +74,23 @@ Output JSON:
     "user has company Android phone for work tasks"
   ]
 }
+
 """
 
-# RISK_IDENTIFIER_PROMPT = """
-# You are given a list of security-relevant facts.
-# For each fact (and combination of facts), identify ALL applicable risks.
-# Do not skip risks just because other facts are present.
-
-# Important:
-# - Treat each fact independently
-# - Also consider interactions between facts (e.g. password reuse + admin privileges = extra risk)
-# - Do not let new facts overshadow existing ones
-
-
-# All risks MUST be assigned to exactly one of the following categories:
-
-# - organisational_structure
-# - processes_and_procedures
-# - administrative_routines
-# - personnel
-# - physical_environment
-# - system_configuration
-# - hardware_software_communication
-# - external_dependencies
-
-# Your output should be a JSON array of identified risks, where each risk is represented as an object with the following structure:
-# {
-#   "risks": [
-#     {
-#       "risk_name": "Password reuse",
-#       "category": "authentication",
-#       "evidence": "I use the same password for every service",
-#       "description": "The same password is used across multiple services.",
-#       "possible_consequence": "Credential stuffing or account takeover."
-#     }
-#   ]
-# }
-
-# Facts: {facts}
-# """
-
-RISK_IDENTIFIER_PROMPT = """You are a cybersecurity risk identifier.
-
-CRITICAL: Respond ONLY with a valid JSON object. No markdown, no explanations, no headers.
-Your entire response must start with { and end with }.
-
-Facts to analyze:
-FACTS_PLACEHOLDER
-
-E-ITS context:
-EITS_PLACEHOLDER
-
+RISK_IDENTIFIER_PROMPT = """
+You are given a list of security-relevant facts.
 For each fact (and combination of facts), identify ALL applicable risks.
 Do not skip risks just because other facts are present.
 
+FACTS: FACTS_PLACEHOLDER
+E-ITS context: EITS_PLACEHOLDER
+Important:
+- Treat each fact independently
+- Also consider interactions between facts (e.g. password reuse + admin privileges = extra risk)
+- Do not let new facts overshadow existing ones
+
 All risks MUST be assigned to exactly one of the following categories:
+
 - organisational_structure
 - processes_and_procedures
 - administrative_routines
@@ -194,141 +100,77 @@ All risks MUST be assigned to exactly one of the following categories:
 - hardware_software_communication
 - external_dependencies
 
-Required output format:
+Your output should be a JSON object of identified risks, where each risk is represented as an object with the following structure:
+
+Return ONLY one valid JSON object.
+The root must be an object with the key "risks".
+Do NOT return a JSON array as the root.
+Your response must start with { and end with }.
 {
   "risks": [
     {
-      "risk_name": "Password reuse",
-      "category": "processes_and_procedures",
-      "evidence": "user reuses same password across all services",
-      "description": "The same password is used across multiple services.",
-      "possible_consequence": "Credential stuffing or account takeover."
+      "risk_name": "Phishing attack",
+      "category": "personnel",
+      "evidence": "I always click on links in emails without verifying the sender.",
+      "description": "Clicking on links in emails without verifying the sender can lead to phishing attacks.",
+      "possible_consequence": "Unauthorized access to sensitive information, financial loss, and identity theft."
     }
   ]
 }
+
 """
 
-FACT_NORMALIZER_PROMPT = """You are given a list of security facts extracted from a user description.
-Your job is to normalize and deduplicate them into canonical forms.
 
-Rules:
-- Merge facts that mean the same thing into one canonical fact
-- Use consistent phrasing: "User X" or "Company Y"
-- Keep facts atomic
-- Do not add facts that were not in the input
-
-Example:
-Input: ["uses same password everywhere", "password reused across services", "one password for all accounts"]
-Output: ["user reuses the same password across all services"]
-
-Input facts:
-FACTS_PLACEHOLDER
-
-Output ONLY this JSON:
-{
-  "facts": ["normalized fact 1", "normalized fact 2"]
-}"""
-
-def parse_llm_json(raw: str) -> Dict[str, Any]:
-    if not raw:
-        return {"risks": [], "parse_error": "empty output"}
-
-    text = raw.strip()
-
-    try:
-        decoded = json.loads(text)
-        if isinstance(decoded, str):
-            text = decoded.strip()
-        elif isinstance(decoded, dict):
-            return decoded
-    except json.JSONDecodeError:
-        pass
-
-    text = text.replace("```json", "").replace("```", "").strip()
-
-    text = text.replace("\\n", "\n").replace('\\"', '"').replace("\\t", "\t")
-
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        pass
-
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    if match:
-        json_part = match.group(0)
-        try:
-            return json.loads(json_part)
-        except json.JSONDecodeError as e:
-            return {
-                "risks": [],
-                "parse_error": str(e),
-                "raw": raw
-            }
-
-    return {
-        "risks": [],
-        "parse_error": "no JSON object found",
-        "raw": raw
-    }
-
-model = init_chat_model(model="deepseek/deepseek-chat", model_provider="openrouter", api_key=MY_API_KEY, temperature=0)
+model = init_chat_model(model="anthropic/claude-sonnet-4.5", model_provider="openrouter", api_key=MY_API_KEY, temperature=0)
 
 
-models_outputs = []
-EITS_CONTEXT = get_fixed_eits_context()
 
-for scenario in scenarios:
-    facts_response = model.invoke([
-        SystemMessage(content=RISK_EXTRACTOR_SYSTEM_PROMPT),
-        HumanMessage(content=scenario)
-    ])
-    facts = parse_llm_json(facts_response.content).get("facts", [])
+def evaluate_scenarios():
+    all_results = []
 
-    facts_normalization_response = model.invoke([
-        SystemMessage(content=FACT_NORMALIZER_PROMPT),
-        HumanMessage(content=FACT_NORMALIZER_PROMPT.replace("FACTS_PLACEHOLDER", json.dumps(facts, ensure_ascii=False)))
-    ])
-    normalized_facts = parse_llm_json(facts_normalization_response.content).get("facts", [])
+    for i, scenario in enumerate(scenarios, start=1):
+        facts_response = model.invoke([
+            SystemMessage(content=RISK_EXTRACTOR_SYSTEM_PROMPT),
+            HumanMessage(content=scenario)
+        ])
+        facts = parse_llm_json(facts_response.content).get("facts", [])
 
-    prompt = RISK_IDENTIFIER_PROMPT \
-        .replace("FACTS_PLACEHOLDER", json.dumps(normalized_facts, ensure_ascii=False)) \
-        .replace("EITS_PLACEHOLDER", EITS_CONTEXT)
+        eits_context = get_eits_context(scenario, facts)
+        prompt = RISK_IDENTIFIER_PROMPT \
+            .replace("FACTS_PLACEHOLDER", json.dumps(facts, ensure_ascii=False)) \
+            .replace("EITS_PLACEHOLDER", eits_context)
 
-    risk_response = model.invoke([
-        HumanMessage(content=prompt)
-    ])
+        risk_response = model.invoke([
+            HumanMessage(content=prompt)
+        ])
 
-    parsed_output = parse_llm_json(risk_response.content)
-    
-    if "parse_error" in parsed_output:
-        print(f"[WARNING] Parse failed. Raw output:\n{parsed_output.get('raw', '')[:300]}")
-    
-    models_outputs.append(parsed_output)
+        identified_risks = parse_llm_json(risk_response.content)
 
-#     prompt = f"""
-# System description:
-# {scenario}
+        if isinstance(identified_risks, list):
+            identified_risks = {"risks": identified_risks}
 
-# Relevant E-ITS context:
-# {eits_context}
+        if "parse_error" in identified_risks:
+            print(f"[WARNING] Scenario {i}: parse failed.")
+            print(identified_risks.get("raw", "")[:300])
 
-# Identify cybersecurity risks based on the system description.
-# Use the E-ITS context when relevant.
-# """
-#     response = model.invoke([
-#         SystemMessage(content=RISK_IDENTIFIER_SYSTEM_PROMPT),
-#         HumanMessage(content=prompt)
-#     ])
-#     output = response.content
-#     parsed_output = parse_llm_json(output)
-#     models_outputs.append(parsed_output)
+        analysed_risks = risk_analysis_agent(identified_risks)
+        evaluated_risks = risk_evaluation_agent(analysed_risks)
 
-print(json.dumps(models_outputs, indent=4))
+        scenario_result = {
+            "scenario_id": i,
+            "scenario": scenario,
+            "facts": facts,
+            "identified_risks": identified_risks,
+            "analysed_risks": analysed_risks,
+            "evaluated_risks": evaluated_risks
+        }
 
+        all_results.append(scenario_result)
+    return all_results
 
-for i in range(len(models_outputs)):
-    for j in range(i+1, len(models_outputs)):
-        risks_i = set(risk["risk_name"] for risk in models_outputs[i].get("risks", []))
-        risks_j = set(risk["risk_name"] for risk in models_outputs[j].get("risks", []))
-        overlap = risks_i.intersection(risks_j)
-        print(f"Overlap between scenario {i} and {j}: {overlap}")
+all_results = evaluate_scenarios()
+
+print(json.dumps(all_results, indent=4, ensure_ascii=False))
+
+with open(f"evaluation_claude_results_test{5}.json", "w", encoding="utf-8") as f:
+    json.dump(all_results, f, indent=4, ensure_ascii=False)

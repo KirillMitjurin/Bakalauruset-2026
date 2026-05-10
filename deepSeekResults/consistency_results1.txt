@@ -1,0 +1,269 @@
+Test file: evaluation_results_test1.json
+Scenario 1 -> Scenario 2
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential insider threat",
+      "reason": "Scenario 2 focuses on external compromise via password reuse and privilege escalation, but does not mention the specific risk of an insider using these credentials."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of multi-factor authentication",
+      "reason": "Scenario 2 describes the vulnerability of password reuse but does not explicitly address the absence of MFA as a distinct risk."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate password policy enforcement",
+      "reason": "Scenario 2 identifies the technical vulnerability of reuse but does not address the organizational failure to enforce policies."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased risk of identity theft",
+      "reason": "Scenario 2 focuses on system and account compromise rather than the broader semantic risk of identity theft."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing attack",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe the risk of using compromised credentials from one service to access others."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased impact of password leaks",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe how password reuse amplifies the impact of a single credential leak."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of password uniqueness enforcement",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both address the core problem of passwords not being unique across services."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Weak password management",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe the failure to follow best practices regarding unique passwords."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased risk of lateral movement",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Combined password reuse and administrative privilege risk",
+      "reason": "Scenario 2's combined risk specifically describes the ability to move from a compromised password to administrative system access."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Potential for widespread account compromise",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Both describe the risk of multiple accounts being compromised due to reuse."
+    }
+  ]
+}
+
+Missing risks: 4
+Matched risks: 6
+Scenario 1 risks: 10
+Retention score: 0.600 [checked]
+
+
+Test file: evaluation_results_test1.json
+Scenario 2 -> Scenario 3
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work account and administrative privilege risk",
+      "reason": "Scenario 2 contains combinations of password reuse and admin privileges, and admin privileges and mobile devices, but lacks the specific combination of work account usage and administrative privileges."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse and work account risk",
+      "reason": "Scenario 2 contains password reuse and work account compromise as individual risks, but lacks a specific combined risk focusing on the intersection of password reuse across all services and work account usage."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Full combination risk",
+      "reason": "The full combination in Scenario 1 (Password reuse + Work account + Admin privileges) is not present in Scenario 2; Scenario 2's full combination replaces 'Work account' with 'Mobile device'."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse vulnerability",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse vulnerability",
+      "reason": "Exact match of risk name and evidence regarding password reuse across services."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work account compromise",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Work account compromise",
+      "reason": "Exact match of risk name and evidence regarding password use for work accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Elevated privilege abuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege abuse",
+      "reason": "Exact match of risk name and evidence regarding administrative privileges on work computer."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Combined password reuse and administrative privilege risk",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Combined password reuse and administrative privileges risk",
+      "reason": "Semantically identical; both describe the combined risk of password reuse and administrative privileges."
+    }
+  ]
+}
+
+Missing risks: 3
+Matched risks: 4
+Scenario 2 risks: 7
+Retention score: 0.571
+
+
+Test file: evaluation_results_test1.json
+Scenario 3 -> Scenario 4
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Combined password reuse and mobile device risk",
+      "reason": "No risk in Scenario 2 combines the semantic elements of password reuse and mobile device security."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Combined administrative privileges and mobile device risk",
+      "reason": "No risk in Scenario 2 combines the semantic elements of administrative privileges and mobile device security."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Combined password reuse, administrative privileges, and mobile device risk",
+      "reason": "No risk in Scenario 2 combines all three elements: password reuse, admin privileges, and mobile device usage."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse vulnerability",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse across services",
+      "reason": "Both describe the risk of using the same password across multiple services."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work account compromise",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Work account password reuse",
+      "reason": "Both describe the risk of using reused passwords specifically for work accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Elevated privilege abuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Admin privileges misuse",
+      "reason": "Both describe the risk associated with having administrative privileges on a work computer."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Mobile device security risk",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Insecure mobile device usage",
+      "reason": "Both describe the security risks associated with using a company Android phone for work."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Combined password reuse and administrative privileges risk",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Combined password reuse and admin privileges",
+      "reason": "Both describe the synergistic risk of combining password reuse with administrative access."
+    }
+  ]
+}
+
+Missing risks: 3
+Matched risks: 5
+Scenario 3 risks: 8
+Retention score: 0.625
+
+
+Test file: evaluation_results_test1.json
+Scenario 4 -> Scenario 5
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work account password reuse",
+      "reason": "Scenario 2 mentions general password reuse across services, but does not specifically address the risk of reusing passwords specifically for work accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Combined password reuse and admin privileges",
+      "reason": "Scenario 2 lists password reuse and admin privileges as separate risks, but does not include the specific combined risk of both occurring simultaneously."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of multi-factor authentication",
+      "reason": "No risk in Scenario 2 addresses the absence of multi-factor authentication (MFA)."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse across services",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse across services",
+      "reason": "Exact match in name and description of reusing passwords across multiple services."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Admin privileges misuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege misuse",
+      "reason": "Both describe the risk of having administrative privileges on a work computer leading to system compromise."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insecure mobile device usage",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Android device vulnerabilities",
+      "reason": "Both address the security risks associated with using a company Android phone for work."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Cloud service dependency",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Cloud service dependency",
+      "reason": "Exact match in name and description regarding reliance on third-party cloud services like Google Drive."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insecure administrative account usage",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Administrative account misuse",
+      "reason": "Both describe the risk of using administrative accounts for daily tasks."
+    }
+  ]
+}
+
+Missing risks: 3
+Matched risks: 5
+Scenario 4 risks: 8
+Retention score: 0.625
+
+

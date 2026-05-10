@@ -1,0 +1,504 @@
+Test file: evaluation_claude_results_test2.json
+Scenario 1 -> Scenario 2
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Amplified impact of password disclosure",
+      "reason": "Scenario 2 focuses on the cascade effect and credential stuffing, but does not specifically address the operational difficulty of simultaneous password changes upon disclosure."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Reduced effectiveness of authentication controls",
+      "reason": "No risk in Scenario 2 specifically addresses the 'lowest-common-denominator' security posture where the weakest system undermines strong authentication on others."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Difficulty in incident containment and forensics",
+      "reason": "Scenario 2 mentions audit trail integrity, but does not address the specific difficulty of determining the scope of compromise across multiple systems due to password reuse."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inability to implement effective password rotation",
+      "reason": "Scenario 2 mentions default password change violations, but not the operational impossibility of rotating a reused password across all services simultaneously."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential compromise cascade across multiple services",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse across services creates credential compromise cascade",
+      "reason": "Both describe the same mechanism where one compromise leads to access across all services due to password reuse."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Violation of password uniqueness policy",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Inadequate password policy enforcement",
+      "reason": "Both address the failure to comply with and enforce policies requiring unique passwords."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Increased vulnerability to credential stuffing attacks",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Credential stuffing attack vulnerability",
+      "reason": "Both explicitly describe the risk of automated credential stuffing using leaked passwords."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Compromised privileged access through password reuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege compromise through credential reuse",
+      "reason": "Both describe how reusing passwords across privileged and non-privileged accounts leads to administrative compromise."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "User behavior risk pattern indicating broader security awareness gaps",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Insufficient security awareness and training",
+      "reason": "Both link the behavior of password reuse to a general lack of security awareness and training."
+    }
+  ]
+}
+
+Missing risks: 4
+Matched risks: 5
+Scenario 1 risks: 9
+Retention score: 0.556
+
+
+Test file: evaluation_claude_results_test2.json
+Scenario 2 -> Scenario 3
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Administrative account password reuse violates OPS.1.1.2.M6",
+      "reason": "Scenario 2 mentions password reuse and administrative privileges separately, but no longer specifically references the OPS.1.1.2.M6 regulatory violation for administrative accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of authentication mechanism strength for administrative access",
+      "reason": "Scenario 2 focuses on the result of compromise rather than the specific lack of MFA/strength for administrative access as a standalone risk."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Third-party service breach leading to corporate network compromise",
+      "reason": "While credential reuse is mentioned, the specific risk of a third-party breach as the entry vector for corporate network compromise is not explicitly detailed as a separate risk in Scenario 2."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient separation of administrative and regular user activities",
+      "reason": "Scenario 2 discusses excessive privileges but does not address the specific failure to separate daily user accounts from administrative accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential stuffing attack vulnerability",
+      "reason": "Credential stuffing is mentioned as a consequence in Scenario 2, but not as a primary risk item."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient security awareness and training",
+      "reason": "Scenario 2 focuses on technical and procedural failures but does not explicitly list the lack of security awareness training as a risk."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Company asset control and monitoring deficiency",
+      "reason": "Scenario 2 discusses the attack surface of privileges but not the organizational deficiency in monitoring and oversight of those assets."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Violation of default password change requirements",
+      "reason": "Scenario 2 focuses on reuse and management, but not specifically on the failure to change default passwords."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Social engineering attack amplification",
+      "reason": "Scenario 2 does not explicitly list the amplification of social engineering attacks due to password reuse."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate privileged access management",
+      "reason": "Scenario 2 addresses excessive privileges but not the overarching failure of the Privileged Access Management (PAM) process."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Compromised audit trail integrity",
+      "reason": "Scenario 2 does not mention the risk of attackers masking their actions in audit logs due to compromised administrative credentials."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse across services creates credential compromise cascade",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse across services enabling credential compromise cascade",
+      "reason": "Identical risk describing the cascade effect of password reuse."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Company asset exposure through personal password practices",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Company asset exposure through compromised credentials",
+      "reason": "Both describe the risk of company assets being exposed due to the user's poor password habits."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Elevated privilege compromise through credential reuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege compromise through password reuse",
+      "reason": "Identical risk describing administrative access gain via reused credentials."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate password policy enforcement",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Inadequate password management practices",
+      "reason": "Both describe the failure of the organization to enforce or manage password policies."
+    }
+  ]
+}
+
+Missing risks: 11
+Matched risks: 4
+Scenario 2 risks: 15
+Retention score: 0.267
+
+
+Test file: evaluation_claude_results_test2.json
+Scenario 3 -> Scenario 4
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate password management practices",
+      "reason": "Scenario 2 focuses on the technical impact of password reuse and policy violations for admin accounts, but lacks a general risk regarding overall password management practices/standards."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work email compromise via mobile device",
+      "reason": "Scenario 2 mentions general work data exposure on mobile, but does not specifically isolate the risk of work email compromise via mobile-specific threats (malicious apps/unsecured networks)."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work email exposure through cascading credential compromise",
+      "reason": "Scenario 2 covers general credential compromise and Google account abuse, but does not specifically address the cascading compromise of work email."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work document exposure on mobile device",
+      "reason": "Scenario 2 covers general work data exposure and Google Drive, but lacks the specific risk of local document exposure on the mobile device due to theft or loss."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work document compromise through credential reuse",
+      "reason": "Scenario 2 addresses cloud/Google Drive documents, but not the general risk of work document compromise via credential reuse across any service."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "BYOD-style risks from personal use patterns",
+      "reason": "Scenario 2 does not address the mixing of personal and professional data or risks from personal apps on the device."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate mobile application access controls",
+      "reason": "Scenario 2 does not mention excessive application permissions or over-privileged apps on the mobile device."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Multi-device attack surface expansion",
+      "reason": "Scenario 2 discusses specific vectors (mobile-to-desktop), but not the general expansion of the attack surface due to the number of devices."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Administrative privilege abuse through mobile compromise",
+      "reason": "Scenario 2 discusses credential reuse and Google account abuse, but not specifically the pivot from a compromised mobile device to administrative system access."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient mobile device password/PIN policy enforcement",
+      "reason": "Scenario 2 focuses on password reuse and Google accounts, but not the specific enforcement of the device's local lock screen/PIN policy."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Data synchronization vulnerabilities across devices",
+      "reason": "Scenario 2 does not address the risks associated with the synchronization process or data residue during sync."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Organizational contact information exposure",
+      "reason": "Scenario 2 does not mention the exposure of organizational address books or contact lists."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate privacy settings on mobile device",
+      "reason": "Scenario 2 does not address general mobile privacy configurations or restrictive privacy settings."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Mobile device theft or loss exposing multiple work resources",
+      "reason": "Scenario 2 focuses on remote/digital compromise (Google account), not the physical theft or loss of the hardware."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient separation of personal and professional data",
+      "reason": "Scenario 2 does not address the risk of data mixing between personal and professional use on the device."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Network-based attacks on mobile device",
+      "reason": "Scenario 2 does not mention public WiFi, cellular interception, or Man-in-the-Middle attacks."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of centralized mobile device management",
+      "reason": "Scenario 2 does not mention the absence of MDM/EMM solutions."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Malicious application installation risk",
+      "reason": "Scenario 2 mentions vulnerabilities and Google account abuse, but not the specific risk of installing malicious apps from stores."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate authentication mechanisms on mobile device",
+      "reason": "Scenario 2 focuses on the password itself, not the lack of MFA or the authentication mechanism of the device."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work data residue on decommissioned or replaced devices",
+      "reason": "Scenario 2 does not address the device lifecycle or data sanitization during decommissioning."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insider threat amplification through excessive access",
+      "reason": "Scenario 2 focuses on external attackers compromising accounts, not the risk posed by the internal user (insider threat)."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Compliance and regulatory violations",
+      "reason": "Scenario 2 mentions policy violations for admin accounts, but not general regulatory/compliance violations across all controls."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient incident detection and response capabilities",
+      "reason": "Scenario 2 does not address the lack of unified monitoring or incident response capabilities."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse across services enabling credential compromise cascade",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse across services enabling credential stuffing attacks",
+      "reason": "Both describe the risk of using the same password across multiple services leading to a cascade of compromises."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Elevated privilege compromise through password reuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Amplified impact of credential compromise due to administrative access",
+      "reason": "Both describe how password reuse combined with admin privileges allows an external breach to grant administrative access."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Excessive administrative privileges creating attack surface",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege abuse through compromised administrative account",
+      "reason": "Both describe the risk that administrative privileges provide a high-impact target if the account is compromised."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Company asset exposure through compromised credentials",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Company asset compromise through user credential weakness",
+      "reason": "Both describe the risk of company-issued hardware being accessed via compromised reused credentials."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Mobile device compromise through credential reuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Mobile device compromise through Google account abuse",
+      "reason": "Both describe the compromise of the Android device resulting from reused credentials (specifically via the Google account in Scenario 2)."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of mobile device update compliance",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Unpatched Android vulnerabilities on company device",
+      "reason": "Both describe the risk of outdated OS/software vulnerabilities on the Android device."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Credential compromise enabling cross-platform administrative access",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Cascading compromise from personal services to corporate infrastructure",
+      "reason": "Both describe the path from a personal service breach to full corporate administrative compromise via reused passwords."
+    }
+  ]
+}
+
+Missing risks: 23
+Matched risks: 7
+Scenario 3 risks: 30
+Retention score: 0.233
+
+
+Test file: evaluation_claude_results_test2.json
+Scenario 4 -> Scenario 5
+--------------------------------------------------------------------------------
+{
+  "missing_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Company asset compromise through user credential weakness",
+      "reason": "Scenario 2 focuses on specific assets (cloud, mobile, admin accounts) but lacks a general risk regarding the compromise of the company-issued computer itself via credential weakness."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Unauthorized data sharing through compromised cloud access",
+      "reason": "Scenario 2 covers cloud data breaches and shared file exposure, but does not specifically address the risk of an attacker actively sharing sensitive information with unauthorized third parties."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Cascading compromise from personal services to corporate infrastructure",
+      "reason": "While Scenario 2 mentions password reuse leading to work system breach, it lacks the specific semantic focus on the 'bridge' between personal online services and the entire corporate infrastructure."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Mobile-to-desktop attack vector through credential reuse",
+      "reason": "Scenario 2 describes mobile-to-cloud vectors, but not the specific lateral movement from a compromised Android device to the company desktop computer."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Google ecosystem-wide compromise affecting multiple corporate services",
+      "reason": "Scenario 2 discusses cloud cascades and mobile risks, but not the specific holistic compromise of the Google ecosystem (Android + Drive + Account) as a single unified risk."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work data exposure through compromised work-enabled mobile device",
+      "reason": "Scenario 2 focuses on the device as an attack vector or vulnerability, but not the specific risk of data exposure resulting from the act of using the device for work tasks."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Personal account usage for administrative operations",
+      "reason": "Scenario 2 addresses the lack of separation between admin/regular accounts, but not the specific violation of using personal accounts for administrative operations."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient access control to administrative interfaces",
+      "reason": "Scenario 2 mentions unauthorized operations, but not the specific failure to restrict access to the administrative interface/functions themselves."
+    }
+  ],
+  "matched_risks": [
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Password reuse across services enabling credential stuffing attacks",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Password reuse across services leading to credential compromise",
+      "reason": "Both describe the risk of using the same password across multiple services leading to compromise."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Elevated privilege abuse through compromised administrative account",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege compromise through password reuse",
+      "reason": "Both describe the risk of an administrative account being compromised, leading to full system control."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Violation of administrative account security policy through password reuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege compromise through password reuse",
+      "reason": "Both reference the violation of E-ITS OPS.1.1.2.M6 regarding unique passwords for administrative zones."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Amplified impact of credential compromise due to administrative access",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Elevated privilege compromise through password reuse",
+      "reason": "Both describe how password reuse combined with admin rights accelerates the impact of a breach."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Mobile device compromise through Google account abuse",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Mobile device compromise through credential reuse",
+      "reason": "Both describe the compromise of the Android device via reused credentials."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Unpatched Android vulnerabilities on company device",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Android device security vulnerabilities",
+      "reason": "Both describe the risk of outdated software and vulnerabilities on the company Android phone."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Cloud data breach through compromised credentials",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Cloud data storage breach through compromised credentials",
+      "reason": "Both describe unauthorized access to cloud storage due to password reuse."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Google Drive data compromise through account takeover",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Cloud data storage breach through compromised credentials",
+      "reason": "Both specifically mention the risk to Google Drive data via account compromise."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Lack of separation between administrative and regular user activities",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Lack of separation between administrative and regular user activities",
+      "reason": "Exact match in name and description regarding the principle of least privilege."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insufficient authentication protection for administrative account",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Inadequate authentication mechanisms for administrative access",
+      "reason": "Both describe the failure to use strong authentication (like MFA) for privileged accounts."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Inadequate audit trail for administrative operations",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Unauthorized administrative operations without accountability",
+      "reason": "Both describe the inability to prove or track administrative actions after the fact."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Work task data exposure through Android device vulnerabilities",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Android device security vulnerabilities",
+      "reason": "Both describe the risk of work data being exposed due to Android vulnerabilities."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Cloud service provider dependency risk",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Cloud service dependency without adequate access controls",
+      "reason": "Both describe the risks associated with relying on external cloud providers."
+    },
+    {
+      "scenario_1_risk_id": null,
+      "scenario_1_risk_name": "Insecure remote administrative access",
+      "scenario_2_risk_id": null,
+      "scenario_2_risk_name": "Insufficient network protocol security for administrative access",
+      "reason": "Both describe the risk of using insecure protocols for remote administration."
+    }
+  ]
+}
+
+Missing risks: 8
+Matched risks: 14
+Scenario 4 risks: 22
+Retention score: 0.636
+
+
