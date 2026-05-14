@@ -1,0 +1,1822 @@
+[
+    {
+        "scenario_id": 1,
+        "scenario": "I use the same password for every service.",
+        "facts": [
+            "user reuses the same password across every service"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential stuffing and mass account takeover",
+                    "category": "external_dependencies",
+                    "evidence": "User reuses the same password across every service; a credential leak from any external service would expose the same password everywhere.",
+                    "description": "Credentials obtained from a third-party breach or dumped on the internet can be used automatically against multiple services (credential stuffing). Because the same password is used everywhere, successful reuse allows attackers to take over numerous accounts without breaching each service individually.",
+                    "possible_consequence": "Unauthorized access to multiple corporate and personal accounts, data exfiltration, financial fraud, fraudulent transactions, and large-scale breach escalation."
+                },
+                {
+                    "risk_name": "Privilege escalation and lateral movement",
+                    "category": "system_configuration",
+                    "evidence": "User reuses the same password across every service, potentially including privileged/admin accounts.",
+                    "description": "If a reused credential belongs to an account with elevated privileges, an attacker who compromises that credential can escalate privileges and move laterally within internal systems, exploiting trust relationships and access rights.",
+                    "possible_consequence": "Full domain or environment compromise, widespread access to sensitive systems and data, disruption of critical services, and destruction or alteration of systems."
+                },
+                {
+                    "risk_name": "Account recovery and reset flow abuse",
+                    "category": "system_configuration",
+                    "evidence": "User reuses the same password across every service; attackers controlling one account can use it to undermine password reset and recovery flows on other systems.",
+                    "description": "Compromise of an account that is used for account recovery (e.g., email, backup account) or that contains verified personal data can allow attackers to reset passwords or bypass protections on other services that rely on that account for verification.",
+                    "possible_consequence": "Bypass of MFA or password protections on other services, persistent attacker access, takeover of email or administrative accounts, and loss of control over multiple systems."
+                },
+                {
+                    "risk_name": "Increased susceptibility to phishing and social engineering",
+                    "category": "personnel",
+                    "evidence": "User reuses the same password across every service.",
+                    "description": "Phishing or social-engineering attacks that harvest credentials for one service become more valuable and damaging when the victim reuses the same password for other accounts, increasing attacker ROI from a single successful scam.",
+                    "possible_consequence": "Credential compromise leading to identity theft, fraudulent actions, unauthorized access to corporate resources, and impersonation of the user for further attacks."
+                },
+                {
+                    "risk_name": "Violation of organisational password policy and weak enforcement",
+                    "category": "processes_and_procedures",
+                    "evidence": "E-ITS policies explicitly forbid password reuse; nonetheless the user reuses the same password across every service.",
+                    "description": "User behaviour contradicts established password rules (e.g., 'same password may not be used more than once' and 'different password is used for each IT system'), indicating insufficient policy enforcement, monitoring, or training.",
+                    "possible_consequence": "Audit findings, failed compliance checks, disciplinary actions, persistent security gaps and erosion of policy effectiveness."
+                },
+                {
+                    "risk_name": "Complicated and slowed incident response and containment",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses the same password across every service; E-ITS requires immediate password changes and defined reset/change procedures.",
+                    "description": "When a reused credential is suspected or known to be compromised, many accounts across services must be reset or coordinatedly remediated. This increases the scope and complexity of incident response, especially if secure reset procedures or cross-service coordination are required.",
+                    "possible_consequence": "Longer time-to-contain, extended exposure of sensitive data, higher remediation costs, and more extensive impact from a single compromise."
+                },
+                {
+                    "risk_name": "Increased operational support burden and costs",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses the same password across every service, increasing likelihood of compromise, lockouts and reset requests.",
+                    "description": "Password reuse leads to more incidents (compromises, account locks, support calls). Helpdesk and support teams must spend more time verifying identity and resetting credentials across multiple services.",
+                    "possible_consequence": "Higher operational costs, longer wait times for legitimate users, reduced productivity and diverted IT resources from other security tasks."
+                },
+                {
+                    "risk_name": "Account lockouts and authentication service disruption from automated attacks",
+                    "category": "hardware_software_communication",
+                    "evidence": "User reuses the same password across every service; attackers can perform automated brute-force/credential-stuffing attempts against those credentials.",
+                    "description": "Automated attacks using leaked/reused credentials can trigger account lockout mechanisms or overload authentication endpoints. Reused passwords increase the scale and frequency of such attacks, potentially causing denial-of-service for legitimate users.",
+                    "possible_consequence": "Users locked out of critical systems, business disruption, missed deadlines or SLAs, and potential need for emergency support interventions."
+                },
+                {
+                    "risk_name": "Reputational, legal and regulatory impact from a multi-service breach",
+                    "category": "organisational_structure",
+                    "evidence": "User reuses the same password across every service; a breach exploiting reused credentials could expose regulated or customer data.",
+                    "description": "A compromise that spans multiple services due to password reuse can result in loss of regulated or sensitive data, triggering legal, regulatory and public-relations consequences for the organisation.",
+                    "possible_consequence": "Regulatory fines, legal claims, contractual penalties, loss of customer trust, and long-term reputational damage."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential stuffing and mass account takeover",
+                    "category": "external_dependencies",
+                    "evidence": "User reuses the same password across every service; a credential leak from any external service would expose the same password everywhere.",
+                    "description": "Credentials obtained from a third-party breach or dumped on the internet can be used automatically against multiple services (credential stuffing). Because the same password is used everywhere, successful reuse allows attackers to take over numerous accounts without breaching each service individually.",
+                    "possible_consequence": "Unauthorized access to multiple corporate and personal accounts, data exfiltration, financial fraud, fraudulent transactions, and large-scale breach escalation.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Password reuse across all services greatly increases the chance that a single external breach will lead to multiple account compromises; the breadth of access possible (personal and corporate accounts) makes the potential impact extremely severe.",
+                    "eits_support": "E-ITS notes the severe impact of taking over privileged accounts (e.g., domain manager) and the risk from breaches exposing credentials, supporting the high-impact assessment."
+                },
+                {
+                    "risk_name": "Privilege escalation and lateral movement",
+                    "category": "system_configuration",
+                    "evidence": "User reuses the same password across every service, potentially including privileged/admin accounts.",
+                    "description": "If a reused credential belongs to an account with elevated privileges, an attacker who compromises that credential can escalate privileges and move laterally within internal systems, exploiting trust relationships and access rights.",
+                    "possible_consequence": "Full domain or environment compromise, widespread access to sensitive systems and data, disruption of critical services, and destruction or alteration of systems.",
+                    "likelihood": "Medium",
+                    "impact": "Very High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a real possibility that privileged credentials are reused; while not certain, if such a credential is compromised the impact (domain/environment compromise) is extremely high.",
+                    "eits_support": "E-ITS highlights that abuse of privileged accounts (e.g., domain manager) can cause extensive damage, supporting the assessment of very high impact from lateral movement."
+                },
+                {
+                    "risk_name": "Account recovery and reset flow abuse",
+                    "category": "system_configuration",
+                    "evidence": "User reuses the same password across every service; attackers controlling one account can use it to undermine password reset and recovery flows on other systems.",
+                    "description": "Compromise of an account that is used for account recovery (e.g., email, backup account) or that contains verified personal data can allow attackers to reset passwords or bypass protections on other services that rely on that account for verification.",
+                    "possible_consequence": "Bypass of MFA or password protections on other services, persistent attacker access, takeover of email or administrative accounts, and loss of control over multiple systems.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Reuse of recovery-capable accounts makes it likely that attackers who control one account can abuse reset flows elsewhere; such abuse can enable widespread account takeover with substantial impact.",
+                    "eits_support": "E-ITS emphasises the risk of acquiring passwords and using them to access privileged functions and accounts, which aligns with the risk of recovery-flow abuse enabling broader compromise."
+                },
+                {
+                    "risk_name": "Increased susceptibility to phishing and social engineering",
+                    "category": "personnel",
+                    "evidence": "User reuses the same password across every service.",
+                    "description": "Phishing or social-engineering attacks that harvest credentials for one service become more valuable and damaging when the victim reuses the same password for other accounts, increasing attacker ROI from a single successful scam.",
+                    "possible_consequence": "Credential compromise leading to identity theft, fraudulent actions, unauthorized access to corporate resources, and impersonation of the user for further attacks.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse multiplies the value of credentials obtained via phishing, making successful social-engineering attacks more likely to yield broad and damaging access.",
+                    "eits_support": "E-ITS documentation references the significant impact of credential compromise and the value of obtaining passwords for accessing accounts, supporting the linkage between phishing success and wider compromise."
+                },
+                {
+                    "risk_name": "Violation of organisational password policy and weak enforcement",
+                    "category": "processes_and_procedures",
+                    "evidence": "E-ITS policies explicitly forbid password reuse; nonetheless the user reuses the same password across every service.",
+                    "description": "User behaviour contradicts established password rules (e.g., 'same password may not be used more than once' and 'different password is used for each IT system'), indicating insufficient policy enforcement, monitoring, or training.",
+                    "possible_consequence": "Audit findings, failed compliance checks, disciplinary actions, persistent security gaps and erosion of policy effectiveness.",
+                    "likelihood": "Very High",
+                    "impact": "Medium",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence shows the policy is already being violated by the user; this confirms very high likelihood of continued non-compliance, with moderate organisational and compliance impact.",
+                    "eits_support": "E-ITS explicitly forbids password reuse (policy statements), directly supporting the finding of policy violation and the need for enforcement."
+                },
+                {
+                    "risk_name": "Complicated and slowed incident response and containment",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses the same password across every service; E-ITS requires immediate password changes and defined reset/change procedures.",
+                    "description": "When a reused credential is suspected or known to be compromised, many accounts across services must be reset or coordinatedly remediated. This increases the scope and complexity of incident response, especially if secure reset procedures or cross-service coordination are required.",
+                    "possible_consequence": "Longer time-to-contain, extended exposure of sensitive data, higher remediation costs, and more extensive impact from a single compromise.",
+                    "likelihood": "High",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Password reuse multiplies the number of accounts requiring remediation during an incident, making response more complex and time-consuming; impact is material but typically operational rather than catastrophic.",
+                    "eits_support": "E-ITS prescribes immediate password changes and reset procedures, which underscores the increased operational burden and complexity when many accounts must be changed simultaneously."
+                },
+                {
+                    "risk_name": "Increased operational support burden and costs",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses the same password across every service, increasing likelihood of compromise, lockouts and reset requests.",
+                    "description": "Password reuse leads to more incidents (compromises, account locks, support calls). Helpdesk and support teams must spend more time verifying identity and resetting credentials across multiple services.",
+                    "possible_consequence": "Higher operational costs, longer wait times for legitimate users, reduced productivity and diverted IT resources from other security tasks.",
+                    "likelihood": "High",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Frequent compromises, lockouts, and resets driven by password reuse will reliably increase support workload and costs; while impactful, these consequences are typically operational and measurable rather than existential.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Account lockouts and authentication service disruption from automated attacks",
+                    "category": "hardware_software_communication",
+                    "evidence": "User reuses the same password across every service; attackers can perform automated brute-force/credential-stuffing attempts against those credentials.",
+                    "description": "Automated attacks using leaked/reused credentials can trigger account lockout mechanisms or overload authentication endpoints. Reused passwords increase the scale and frequency of such attacks, potentially causing denial-of-service for legitimate users.",
+                    "possible_consequence": "Users locked out of critical systems, business disruption, missed deadlines or SLAs, and potential need for emergency support interventions.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Credential-stuffing and brute-force attacks are automated and scale easily; widespread password reuse increases attack surface and likelihood of causing auth-service disruption or mass lockouts with significant business impact.",
+                    "eits_support": "E-ITS notes that interruption of IT systems (e.g., authentication services) and loss of availability can significantly impact operations, supporting the assessment of high impact from service disruption."
+                },
+                {
+                    "risk_name": "Reputational, legal and regulatory impact from a multi-service breach",
+                    "category": "organisational_structure",
+                    "evidence": "User reuses the same password across every service; a breach exploiting reused credentials could expose regulated or customer data.",
+                    "description": "A compromise that spans multiple services due to password reuse can result in loss of regulated or sensitive data, triggering legal, regulatory and public-relations consequences for the organisation.",
+                    "possible_consequence": "Regulatory fines, legal claims, contractual penalties, loss of customer trust, and long-term reputational damage.",
+                    "likelihood": "Medium",
+                    "impact": "Very High",
+                    "risk_level": "High",
+                    "analysis_justification": "While exposure of regulated data depends on which accounts are compromised, the potential consequences (fines, litigation, reputational harm) are severe; given reuse, the chance of cross-service exposure is meaningful but not certain.",
+                    "eits_support": "E-ITS describes data loss consequences including legal and reputational damage and long-term business impact, supporting the assessment of very high potential impact from multi-service breaches."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential stuffing and mass account takeover",
+                    "category": "external_dependencies",
+                    "evidence": "User reuses the same password across every service; a credential leak from any external service would expose the same password everywhere.",
+                    "description": "Credentials obtained from a third-party breach or dumped on the internet can be used automatically against multiple services (credential stuffing). Because the same password is used everywhere, successful reuse allows attackers to take over numerous accounts without breaching each service individually.",
+                    "possible_consequence": "Unauthorized access to multiple corporate and personal accounts, data exfiltration, financial fraud, fraudulent transactions, and large-scale breach escalation.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Password reuse across all services greatly increases the chance that a single external breach will lead to multiple account compromises; the breadth of access possible (personal and corporate accounts) makes the potential impact extremely severe.",
+                    "eits_support": "E-ITS notes the severe impact of taking over privileged accounts (e.g., domain manager) and the risk from breaches exposing credentials, supporting the high-impact assessment.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Risk level is Very High with high likelihood; unacceptable per default appetite. Reduce via MFA, unique passwords, password managers, monitoring and breach-detection controls."
+                },
+                {
+                    "risk_name": "Privilege escalation and lateral movement",
+                    "category": "system_configuration",
+                    "evidence": "User reuses the same password across every service, potentially including privileged/admin accounts.",
+                    "description": "If a reused credential belongs to an account with elevated privileges, an attacker who compromises that credential can escalate privileges and move laterally within internal systems, exploiting trust relationships and access rights.",
+                    "possible_consequence": "Full domain or environment compromise, widespread access to sensitive systems and data, disruption of critical services, and destruction or alteration of systems.",
+                    "likelihood": "Medium",
+                    "impact": "Very High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence indicates a real possibility that privileged credentials are reused; while not certain, if such a credential is compromised the impact (domain/environment compromise) is extremely high.",
+                    "eits_support": "E-ITS highlights that abuse of privileged accounts (e.g., domain manager) can cause extensive damage, supporting the assessment of very high impact from lateral movement.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High risk to privileged accounts with potentially catastrophic impact; unacceptable and should be reduced (least privilege, credential segregation, MFA, privileged access management)."
+                },
+                {
+                    "risk_name": "Account recovery and reset flow abuse",
+                    "category": "system_configuration",
+                    "evidence": "User reuses the same password across every service; attackers controlling one account can use it to undermine password reset and recovery flows on other systems.",
+                    "description": "Compromise of an account that is used for account recovery (e.g., email, backup account) or that contains verified personal data can allow attackers to reset passwords or bypass protections on other services that rely on that account for verification.",
+                    "possible_consequence": "Bypass of MFA or password protections on other services, persistent attacker access, takeover of email or administrative accounts, and loss of control over multiple systems.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Reuse of recovery-capable accounts makes it likely that attackers who control one account can abuse reset flows elsewhere; such abuse can enable widespread account takeover with substantial impact.",
+                    "eits_support": "E-ITS emphasises the risk of acquiring passwords and using them to access privileged functions and accounts, which aligns with the risk of recovery-flow abuse enabling broader compromise.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High likelihood and impact on account recovery channels make this unacceptable; reduce by hardening recovery flows, segregating recovery accounts, and enforcing MFA on recovery channels."
+                },
+                {
+                    "risk_name": "Increased susceptibility to phishing and social engineering",
+                    "category": "personnel",
+                    "evidence": "User reuses the same password across every service.",
+                    "description": "Phishing or social-engineering attacks that harvest credentials for one service become more valuable and damaging when the victim reuses the same password for other accounts, increasing attacker ROI from a single successful scam.",
+                    "possible_consequence": "Credential compromise leading to identity theft, fraudulent actions, unauthorized access to corporate resources, and impersonation of the user for further attacks.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse multiplies the value of credentials obtained via phishing, making successful social-engineering attacks more likely to yield broad and damaging access.",
+                    "eits_support": "E-ITS documentation references the significant impact of credential compromise and the value of obtaining passwords for accessing accounts, supporting the linkage between phishing success and wider compromise.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High likelihood and impact from credential reuse amplify phishing risks; unacceptable and should be reduced via training, MFA, unique credentials and email protections."
+                },
+                {
+                    "risk_name": "Violation of organisational password policy and weak enforcement",
+                    "category": "processes_and_procedures",
+                    "evidence": "E-ITS policies explicitly forbid password reuse; nonetheless the user reuses the same password across every service.",
+                    "description": "User behaviour contradicts established password rules (e.g., 'same password may not be used more than once' and 'different password is used for each IT system'), indicating insufficient policy enforcement, monitoring, or training.",
+                    "possible_consequence": "Audit findings, failed compliance checks, disciplinary actions, persistent security gaps and erosion of policy effectiveness.",
+                    "likelihood": "Very High",
+                    "impact": "Medium",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence shows the policy is already being violated by the user; this confirms very high likelihood of continued non-compliance, with moderate organisational and compliance impact.",
+                    "eits_support": "E-ITS explicitly forbids password reuse (policy statements), directly supporting the finding of policy violation and the need for enforcement.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High risk level driven by near-certain non-compliance; unacceptable. Reduce by enforcing technical controls, auditing, training and disciplinary processes to ensure policy adherence."
+                },
+                {
+                    "risk_name": "Complicated and slowed incident response and containment",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses the same password across every service; E-ITS requires immediate password changes and defined reset/change procedures.",
+                    "description": "When a reused credential is suspected or known to be compromised, many accounts across services must be reset or coordinatedly remediated. This increases the scope and complexity of incident response, especially if secure reset procedures or cross-service coordination are required.",
+                    "possible_consequence": "Longer time-to-contain, extended exposure of sensitive data, higher remediation costs, and more extensive impact from a single compromise.",
+                    "likelihood": "High",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Password reuse multiplies the number of accounts requiring remediation during an incident, making response more complex and time-consuming; impact is material but typically operational rather than catastrophic.",
+                    "eits_support": "E-ITS prescribes immediate password changes and reset procedures, which underscores the increased operational burden and complexity when many accounts must be changed simultaneously.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk with high operational impact; should be reduced by improving incident playbooks, automating resets, and implementing segmentation/credential hygiene to limit blast radius."
+                },
+                {
+                    "risk_name": "Increased operational support burden and costs",
+                    "category": "administrative_routines",
+                    "evidence": "User reuses the same password across every service, increasing likelihood of compromise, lockouts and reset requests.",
+                    "description": "Password reuse leads to more incidents (compromises, account locks, support calls). Helpdesk and support teams must spend more time verifying identity and resetting credentials across multiple services.",
+                    "possible_consequence": "Higher operational costs, longer wait times for legitimate users, reduced productivity and diverted IT resources from other security tasks.",
+                    "likelihood": "High",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Frequent compromises, lockouts, and resets driven by password reuse will reliably increase support workload and costs; while impactful, these consequences are typically operational and measurable rather than existential.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Operational cost risk is medium but predictable; reduce via user education, self-service recovery, and enforcing better credential practices to lower support demand."
+                },
+                {
+                    "risk_name": "Account lockouts and authentication service disruption from automated attacks",
+                    "category": "hardware_software_communication",
+                    "evidence": "User reuses the same password across every service; attackers can perform automated brute-force/credential-stuffing attempts against those credentials.",
+                    "description": "Automated attacks using leaked/reused credentials can trigger account lockout mechanisms or overload authentication endpoints. Reused passwords increase the scale and frequency of such attacks, potentially causing denial-of-service for legitimate users.",
+                    "possible_consequence": "Users locked out of critical systems, business disruption, missed deadlines or SLAs, and potential need for emergency support interventions.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Credential-stuffing and brute-force attacks are automated and scale easily; widespread password reuse increases attack surface and likelihood of causing auth-service disruption or mass lockouts with significant business impact.",
+                    "eits_support": "E-ITS notes that interruption of IT systems (e.g., authentication services) and loss of availability can significantly impact operations, supporting the assessment of high impact from service disruption.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High likelihood and impact to availability; unacceptable. Reduce via rate-limiting, anomaly detection, robust lockout policies, MFA, and credential hygiene to prevent mass lockouts and DoS."
+                },
+                {
+                    "risk_name": "Reputational, legal and regulatory impact from a multi-service breach",
+                    "category": "organisational_structure",
+                    "evidence": "User reuses the same password across every service; a breach exploiting reused credentials could expose regulated or customer data.",
+                    "description": "A compromise that spans multiple services due to password reuse can result in loss of regulated or sensitive data, triggering legal, regulatory and public-relations consequences for the organisation.",
+                    "possible_consequence": "Regulatory fines, legal claims, contractual penalties, loss of customer trust, and long-term reputational damage.",
+                    "likelihood": "Medium",
+                    "impact": "Very High",
+                    "risk_level": "High",
+                    "analysis_justification": "While exposure of regulated data depends on which accounts are compromised, the potential consequences (fines, litigation, reputational harm) are severe; given reuse, the chance of cross-service exposure is meaningful but not certain.",
+                    "eits_support": "E-ITS describes data loss consequences including legal and reputational damage and long-term business impact, supporting the assessment of very high potential impact from multi-service breaches.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High-impact regulatory and reputational consequences make this unacceptable; reduce by preventing credential reuse, enforcing controls, segmentation, and rapid detection/response to limit scope."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 2,
+        "scenario": "I use the same password for every service. At work, I use a company-issued computer where I have administrative privileges.",
+        "facts": [
+            "user reuses the same password for every service",
+            "the same password is used for work accounts/services",
+            "user uses a company-issued computer at work",
+            "user has administrative privileges on the company-issued work computer"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse by user",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "The user reuses a single password across multiple services, indicating poor password hygiene and a high likelihood of credential reuse.",
+                    "possible_consequence": "If any one service is compromised, attackers can use the same credentials to breach the user's other accounts, resulting in account takeover, data theft and wider compromise of linked services."
+                },
+                {
+                    "risk_name": "Third-party breach enables access to corporate accounts",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "Because the same password is used across services, a breach of an external or consumer service can reveal credentials that are valid for corporate accounts.",
+                    "possible_consequence": "Attackers can use stolen credentials from third-party breaches to access corporate systems, exfiltrate data, and move laterally inside the organisation."
+                },
+                {
+                    "risk_name": "Non-compliance with password policies and change requirements",
+                    "category": "processes_and_procedures",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "Reusing one password across services contravenes requirements for unique, regularly changed passwords and meaningful password-change triggers.",
+                    "possible_consequence": "Extended exposure to compromised credentials, failed audits, and regulatory or contractual penalties for inadequate password management."
+                },
+                {
+                    "risk_name": "Work-account credential reuse increases corporate impact",
+                    "category": "personnel",
+                    "evidence": "the same password is used for work accounts/services",
+                    "description": "The user uses identical credentials for multiple work-related accounts/services, concentrating risk across corporate systems.",
+                    "possible_consequence": "Compromise of one corporate account can result in access to multiple internal services, leading to data leaks, privilege escalation and service disruption."
+                },
+                {
+                    "risk_name": "Insufficient separation of corporate account credentials",
+                    "category": "administrative_routines",
+                    "evidence": "the same password is used for work accounts/services",
+                    "description": "Using the same password for multiple work accounts undermines account segregation and administrative routines intended to isolate privileges.",
+                    "possible_consequence": "Loss of least-privilege controls and inability to enforce administrative boundaries, increasing the blast radius of any compromise."
+                },
+                {
+                    "risk_name": "Data exposure from lost or stolen company device",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-issued computer at work",
+                    "description": "A company-issued device contains corporate credentials and data; loss or theft of the device can expose those assets.",
+                    "possible_consequence": "Unauthorised access to corporate accounts and data, potential data breach notifications and business disruption."
+                },
+                {
+                    "risk_name": "Inadequate endpoint hardening on company-issued computer",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer at work",
+                    "description": "If the company device is not configured according to hardened baseline (patching, AV, least-privilege), it becomes an easy foothold for attackers.",
+                    "possible_consequence": "Malware infection, lateral movement into the corporate network, compromise of sensitive systems and services."
+                },
+                {
+                    "risk_name": "User has local administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on the company-issued work computer",
+                    "description": "The user holds administrative privileges on their company device and may perform daily tasks with elevated rights rather than using a limited account.",
+                    "possible_consequence": "Malicious software or attacker actions executed by the user can run with elevated privileges, allowing persistence, system modification and wide compromise."
+                },
+                {
+                    "risk_name": "Lack of separation between personal and administrative accounts",
+                    "category": "organisational_structure",
+                    "evidence": "user has administrative privileges on the company-issued work computer",
+                    "description": "Administrative responsibilities are not separated from daily user activities, and personal/regular accounts are being used for administrative operations.",
+                    "possible_consequence": "Reduced accountability and auditability for administrative actions, policy violations and difficulties proving what admin actions were taken, when and by whom."
+                },
+                {
+                    "risk_name": "Compromise of reused credentials with administrative privileges",
+                    "category": "system_configuration",
+                    "evidence": "user reuses the same password for every service; user has administrative privileges on the company-issued work computer",
+                    "description": "A reused credential that is also tied to an account with local administrative privileges allows an attacker to obtain elevated control over the endpoint and potentially other systems.",
+                    "possible_consequence": "Full takeover of the device, installation of persistent backdoors, escalation to domain-level compromise and exfiltration of high-value data."
+                },
+                {
+                    "risk_name": "Credential theft via endpoint when work passwords are reused",
+                    "category": "hardware_software_communication",
+                    "evidence": "the same password is used for work accounts/services; user uses a company-issued computer at work",
+                    "description": "Reused work passwords that are entered on or stored by the company device can be captured (keyloggers, browser stores, memory scraping) if the endpoint is compromised.",
+                    "possible_consequence": "Attackers can harvest credentials from the device and use them to access multiple corporate services, leading to widespread account takeover."
+                },
+                {
+                    "risk_name": "Administrative operations not provable or auditable",
+                    "category": "processes_and_procedures",
+                    "evidence": "the same password is used for work accounts/services; user uses a company-issued computer at work; user has administrative privileges on the company-issued work computer",
+                    "description": "Use of shared/reused credentials and administrative privileges on a general-use device prevents reliable proof of who performed administrative operations and when.",
+                    "possible_consequence": "Violation of policy (e.g. inability to demonstrate compliance with audit requirements), loss of non-repudiation, and regulatory or contractual consequences."
+                },
+                {
+                    "risk_name": "Single point of failure: universal credential on company device with admin rights",
+                    "category": "organisational_structure",
+                    "evidence": "user reuses the same password for every service; the same password is used for work accounts/services; user uses a company-issued computer at work; user has administrative privileges on the company-issued work computer",
+                    "description": "All identified weaknesses combine to create a single, high-impact attack vector: one compromised credential grants attacker administrative control from a corporate endpoint across services.",
+                    "possible_consequence": "Catastrophic organisational impact including full network compromise, prolonged undetected access, large-scale data exfiltration, operational disruption and severe regulatory and reputational damage."
+                },
+                {
+                    "risk_name": "Use of personal/regular account for administrative operations",
+                    "category": "organisational_structure",
+                    "evidence": "user has administrative privileges on the company-issued work computer",
+                    "description": "Administrative tasks are performed using personal or general-purpose accounts rather than dedicated administrative accounts.",
+                    "possible_consequence": "Violation of the requirement to use only personal administrative accounts for admin operations, leading to poor accountability, mixing of privileges and increased risk of unauthorized changes."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [],
+            "parse_error": "empty output"
+        },
+        "evaluated_risks": {
+            "risks": []
+        }
+    },
+    {
+        "scenario_id": 3,
+        "scenario": "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work-related tasks, such as accessing emails and documents.",
+        "facts": [
+            "user reuses the same password for every service",
+            "the same password is used for work accounts",
+            "user has a company-issued computer",
+            "user has administrative privileges on the company-issued computer",
+            "user has a company-provided Android phone",
+            "the company Android phone is used for work-related tasks",
+            "the Android phone is used to access work emails",
+            "the Android phone is used to access work documents"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse across services",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "Using the same password for multiple services means a credential exposed in one breach can be used to access other online accounts belonging to the user.",
+                    "possible_consequence": "Account takeover across multiple services, loss of personal and work data, unauthorized transactions or identity theft."
+                },
+                {
+                    "risk_name": "Same credential for work accounts",
+                    "category": "personnel",
+                    "evidence": "the same password is used for work accounts",
+                    "description": "Work accounts protected by the same password are all vulnerable if that single credential is compromised.",
+                    "possible_consequence": "Compromise of corporate email, document stores, and internal services, leading to data breaches and operational disruption."
+                },
+                {
+                    "risk_name": "Single-breach escalation to enterprise compromise",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service; the same password is used for work accounts",
+                    "description": "If an attacker obtains the reused credential from any service (personal or third-party), they can escalate to access all work-related accounts and systems that use the same credential.",
+                    "possible_consequence": "Widespread account takeover, exfiltration of confidential corporate data, fraud, reputational damage and regulatory penalties."
+                },
+                {
+                    "risk_name": "Absence or failure of enforced password policy",
+                    "category": "organisational_structure",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "User password reuse indicates lack of effective organisational controls (policy enforcement, technical controls like unique-password enforcement, or training) to prevent weak credential practices.",
+                    "possible_consequence": "Elevated probability of credential compromise across the organisation and inability to meet security/compliance requirements."
+                },
+                {
+                    "risk_name": "Theft or loss of company devices exposing corporate data",
+                    "category": "physical_environment",
+                    "evidence": "user has a company-issued computer; user has a company-provided Android phone",
+                    "description": "Company-owned devices, if lost or stolen, can provide direct access to locally stored or cached corporate data and logged-in sessions if not properly protected.",
+                    "possible_consequence": "Disclosure of sensitive corporate information, unauthorized access to accounts, and subsequent data breaches."
+                },
+                {
+                    "risk_name": "Mobile operating system vulnerabilities due to insufficient patching",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-provided Android phone",
+                    "description": "Android devices that are not regularly updated or are out-of-support are susceptible to known vulnerabilities that can be exploited to compromise the device and its data.",
+                    "possible_consequence": "Remote compromise of the phone, interception of communications, unauthorized access to work email/documents and lateral attacks into corporate systems."
+                },
+                {
+                    "risk_name": "Excessive privilege on company computer enabling malware persistence",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-issued computer; user has administrative privileges on the company-issued computer",
+                    "description": "Local administrative privileges allow installation of software, modification of system security settings, and persistence mechanisms that malware can exploit.",
+                    "possible_consequence": "Installation of persistent malware, disabling of endpoint security, broad compromise of corporate network and data exfiltration."
+                },
+                {
+                    "risk_name": "Misuse or compromise of privileged account (insider or external)",
+                    "category": "personnel",
+                    "evidence": "user has administrative privileges on the company-issued computer",
+                    "description": "A user with admin privileges can intentionally or inadvertently perform damaging actions, or an attacker who compromises that user can leverage the privileges for extended impact.",
+                    "possible_consequence": "Unauthorized changes to systems, data deletion or theft, creation of backdoors, and severe operational impact."
+                },
+                {
+                    "risk_name": "Unrestricted app permissions and privacy settings on mobile",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks",
+                    "description": "If apps on the device have broad permissions (contacts, storage, microphone, camera) and privacy settings are not restrictive, apps can access and exfiltrate corporate data.",
+                    "possible_consequence": "Leakage of contacts, emails, documents or credentials to malicious apps leading to data breaches and unauthorized contact harvesting."
+                },
+                {
+                    "risk_name": "Personal apps on company phone accessing corporate resources",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks",
+                    "description": "Allowing personal use or installation of personal apps on corporate phones increases the chance that third‑party apps will access corporate information or introduce malware.",
+                    "possible_consequence": "Data exfiltration, compromise of corporate accounts and contact lists, and increased risk of targeted attacks using harvested information."
+                },
+                {
+                    "risk_name": "Increased phishing and mail-based attack surface via mobile email",
+                    "category": "hardware_software_communication",
+                    "evidence": "the Android phone is used to access work emails",
+                    "description": "Accessing work email on a mobile device increases exposure to phishing, malicious links and attachments which may be easier to accept or act on via mobile.",
+                    "possible_consequence": "Credential theft, malware infection, business email compromise leading to financial loss and data breaches."
+                },
+                {
+                    "risk_name": "Document exfiltration from mobile access",
+                    "category": "hardware_software_communication",
+                    "evidence": "the Android phone is used to access work documents",
+                    "description": "Work documents accessed on the phone can be copied, synced or uploaded by apps or users to external services or personal accounts.",
+                    "possible_consequence": "Unauthorized disclosure of sensitive documents, leakage of intellectual property or regulated data, and compliance violations."
+                },
+                {
+                    "risk_name": "Third-party cloud and app dependency leading to data exposure",
+                    "category": "external_dependencies",
+                    "evidence": "the company Android phone is used for work-related tasks; the Android phone is used to access work documents",
+                    "description": "Mobile access often involves third-party cloud services and apps; vulnerabilities or misconfigurations in those external services can expose corporate data.",
+                    "possible_consequence": "Data breaches via third-party providers, loss of control over data residency, and supply-chain security incidents."
+                },
+                {
+                    "risk_name": "Insufficient device management and operational controls for mobile",
+                    "category": "administrative_routines",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks; the Android phone is used to access work emails; the Android phone is used to access work documents",
+                    "description": "If mobile devices are not centrally managed (e.g., no MDM/EMM), operational routines like enforcing encryption, remote wipe, app control and patch deployment may be missing.",
+                    "possible_consequence": "Inability to respond to device loss or compromise, inconsistent security posture across devices, and elevated breach risk."
+                },
+                {
+                    "risk_name": "Lateral movement from mobile compromise to corporate endpoints",
+                    "category": "system_configuration",
+                    "evidence": "user reuses the same password for every service; the Android phone is used to access work emails; user has a company-issued computer",
+                    "description": "A compromised mobile (via phishing, malware or stolen credentials) can be used to access email or credentials that enable attackers to move laterally to corporate computers and services.",
+                    "possible_consequence": "Compromise of internal networks and systems, widespread data exfiltration and prolonged undetected intrusion."
+                },
+                {
+                    "risk_name": "Device-level security controls bypass via admin access",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-issued computer; user has administrative privileges on the company-issued computer",
+                    "description": "Local admin users can disable or circumvent security controls (antivirus, patching, logging), change configurations or install root certificates that undermine security controls.",
+                    "possible_consequence": "Reduced detection and prevention capability, persistence of attackers, and broader compromise of systems and data."
+                },
+                {
+                    "risk_name": "Compliance and privacy breaches from mixed personal/work use",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks; the Android phone is used to access work emails; the Android phone is used to access work documents",
+                    "description": "Using a company phone for both personal and work tasks can lead to mixing of personal data with corporate information and uncontrolled sharing of regulated data.",
+                    "possible_consequence": "Violation of data protection regulations, legal penalties, damage to customer trust and contractual breaches."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse across services",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "Using the same password for multiple services means a credential exposed in one breach can be used to access other online accounts belonging to the user.",
+                    "possible_consequence": "Account takeover across multiple services, loss of personal and work data, unauthorized transactions or identity theft.",
+                    "likelihood": "Very High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence explicitly states the user reuses the same password for every service, which makes compromise in one breach almost certain to affect other accounts; consequences are severe for affected accounts.",
+                    "eits_support": "E-ITS (Page 21) specifically highlights that use of the same passwords on social networks and in the working environment can lead to misuse of IT systems, supporting the elevated likelihood and impact."
+                },
+                {
+                    "risk_name": "Same credential for work accounts",
+                    "category": "personnel",
+                    "evidence": "the same password is used for work accounts",
+                    "description": "Work accounts protected by the same password are all vulnerable if that single credential is compromised.",
+                    "possible_consequence": "Compromise of corporate email, document stores, and internal services, leading to data breaches and operational disruption.",
+                    "likelihood": "Very High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Evidence confirms a single password protects multiple work accounts; compromise of that credential would likely yield broad access to corporate resources with severe organizational consequences.",
+                    "eits_support": "E-ITS (Page 21 and Page 32) warns that password reuse and inadequate identity/right management can enable misuse and continued access to sensitive systems, supporting the assessment."
+                },
+                {
+                    "risk_name": "Single-breach escalation to enterprise compromise",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service; the same password is used for work accounts",
+                    "description": "If an attacker obtains the reused credential from any service (personal or third-party), they can escalate to access all work-related accounts and systems that use the same credential.",
+                    "possible_consequence": "Widespread account takeover, exfiltration of confidential corporate data, fraud, reputational damage and regulatory penalties.",
+                    "likelihood": "Very High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Combined evidence shows universal reuse including work credentials; an attacker obtaining one credential can likely escalate to enterprise systems, producing very severe impacts.",
+                    "eits_support": "E-ITS (Page 21 and Page 32) describes how password reuse and inadequate identity management can lead to misuse and prolonged access, supporting this escalation risk."
+                },
+                {
+                    "risk_name": "Absence or failure of enforced password policy",
+                    "category": "organisational_structure",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "User password reuse indicates lack of effective organisational controls (policy enforcement, technical controls like unique-password enforcement, or training) to prevent weak credential practices.",
+                    "possible_consequence": "Elevated probability of credential compromise across the organisation and inability to meet security/compliance requirements.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "User behaviour is indicative of ineffective enforcement or absence of controls (policy, technical or training) that would prevent reuse; this materially increases organisational exposure.",
+                    "eits_support": "E-ITS (Page 21) notes employees may ignore organisational measures and that password reuse can lead to misuse; Page 32 highlights identity management/process gaps, supporting the finding."
+                },
+                {
+                    "risk_name": "Theft or loss of company devices exposing corporate data",
+                    "category": "physical_environment",
+                    "evidence": "user has a company-issued computer; user has a company-provided Android phone",
+                    "description": "Company-owned devices, if lost or stolen, can provide direct access to locally stored or cached corporate data and logged-in sessions if not properly protected.",
+                    "possible_consequence": "Disclosure of sensitive corporate information, unauthorized access to accounts, and subsequent data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Presence of company devices creates a plausible risk of loss/theft; while not certain, loss would likely expose sensitive data and sessions, producing significant impact.",
+                    "eits_support": "E-ITS (Page 21) discusses manipulation/misuse of IT equipment leading to data leaks, which supports the risk of device loss or theft exposing corporate data."
+                },
+                {
+                    "risk_name": "Mobile operating system vulnerabilities due to insufficient patching",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-provided Android phone",
+                    "description": "Android devices that are not regularly updated or are out-of-support are susceptible to known vulnerabilities that can be exploited to compromise the device and its data.",
+                    "possible_consequence": "Remote compromise of the phone, interception of communications, unauthorized access to work email/documents and lateral attacks into corporate systems.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "The presence of an Android device creates exposure to OS vulnerabilities if not patched; absent evidence of patching status, a moderate likelihood is appropriate while impact of a successful exploit is high.",
+                    "eits_support": "E-ITS (Page 21) highlights that negligence and insufficient qualifications can lead to security failures; this supports concerns about unpatched mobile devices contributing to vulnerabilities."
+                },
+                {
+                    "risk_name": "Excessive privilege on company computer enabling malware persistence",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-issued computer; user has administrative privileges on the company-issued computer",
+                    "description": "Local administrative privileges allow installation of software, modification of system security settings, and persistence mechanisms that malware can exploit.",
+                    "possible_consequence": "Installation of persistent malware, disabling of endpoint security, broad compromise of corporate network and data exfiltration.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Evidence of local admin rights significantly increases the likelihood that malware (if introduced) can achieve persistence and disable controls; such persistence can lead to very severe organisational compromise.",
+                    "eits_support": "E-ITS (Page 32) stresses the importance of managing identity and rights; administrative rights enabling circumvention of controls aligns with those concerns."
+                },
+                {
+                    "risk_name": "Misuse or compromise of privileged account (insider or external)",
+                    "category": "personnel",
+                    "evidence": "user has administrative privileges on the company-issued computer",
+                    "description": "A user with admin privileges can intentionally or inadvertently perform damaging actions, or an attacker who compromises that user can leverage the privileges for extended impact.",
+                    "possible_consequence": "Unauthorized changes to systems, data deletion or theft, creation of backdoors, and severe operational impact.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Admin privileges provide the capability for both malicious insider actions and amplified impact following compromise; given those capabilities the likelihood of significant misuse is elevated and impacts are very severe.",
+                    "eits_support": "E-ITS (Page 32) notes that incomplete identity and rights management can leave excessive access in place, supporting the elevated risk of privileged misuse or compromise."
+                },
+                {
+                    "risk_name": "Unrestricted app permissions and privacy settings on mobile",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks",
+                    "description": "If apps on the device have broad permissions (contacts, storage, microphone, camera) and privacy settings are not restrictive, apps can access and exfiltrate corporate data.",
+                    "possible_consequence": "Leakage of contacts, emails, documents or credentials to malicious apps leading to data breaches and unauthorized contact harvesting.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Work use of a mobile device increases the chance that apps could be granted broad permissions; without explicit evidence about permission settings, a medium likelihood is appropriate, but the potential impact is high.",
+                    "eits_support": "E-ITS (Page 21) highlights that negligence and misuse of IT equipment can lead to data leaks, which supports concern about app permissions exposing corporate data."
+                },
+                {
+                    "risk_name": "Personal apps on company phone accessing corporate resources",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks",
+                    "description": "Allowing personal use or installation of personal apps on corporate phones increases the chance that third‑party apps will access corporate information or introduce malware.",
+                    "possible_consequence": "Data exfiltration, compromise of corporate accounts and contact lists, and increased risk of targeted attacks using harvested information.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Evidence shows the device is used for work tasks. If personal apps are present (not stated explicitly), they can access corporate resources—hence a medium likelihood and high impact are appropriate absent confirmation of policy enforcement.",
+                    "eits_support": "E-ITS (Page 21) warns that organisational and technical measures can be ignored for convenience and that mixed personal/work use can lead to misuse, supporting this risk."
+                },
+                {
+                    "risk_name": "Increased phishing and mail-based attack surface via mobile",
+                    "category": "hardware_software_communication",
+                    "evidence": "the Android phone is used to access work emails",
+                    "description": "Accessing work email on a mobile device increases exposure to phishing, malicious links and attachments which may be easier to accept or act on via mobile.",
+                    "possible_consequence": "Credential theft, malware infection, business email compromise leading to financial loss and data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Using mobile for work email is explicitly stated; mobile devices commonly increase susceptibility to phishing and accidental interaction with malicious content, making likelihood and impact both high.",
+                    "eits_support": "E-ITS (Page 21) emphasizes that lack of awareness and negligence increase susceptibility to attacks, backing the elevated phishing risk for mobile email."
+                },
+                {
+                    "risk_name": "Document exfiltration from mobile access",
+                    "category": "hardware_software_communication",
+                    "evidence": "the Android phone is used to access work documents",
+                    "description": "Work documents accessed on the phone can be copied, synced or uploaded by apps or users to external services or personal accounts.",
+                    "possible_consequence": "Unauthorized disclosure of sensitive documents, leakage of intellectual property or regulated data, and compliance violations.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Direct evidence shows work documents are accessed from the mobile device; copying or syncing to external services is an easy and common vector, yielding a high likelihood and high impact if exfiltrated.",
+                    "eits_support": "E-ITS (Page 21) notes that misuse and circumvention of controls can lead to data leaks, supporting the concern over document exfiltration from mobile devices."
+                },
+                {
+                    "risk_name": "Third-party cloud and app dependency leading to data exposure",
+                    "category": "external_dependencies",
+                    "evidence": "the company Android phone is used for work-related tasks; the Android phone is used to access work documents",
+                    "description": "Mobile access often involves third-party cloud services and apps; vulnerabilities or misconfigurations in those external services can expose corporate data.",
+                    "possible_consequence": "Data breaches via third-party providers, loss of control over data residency, and supply-chain security incidents.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Mobile document access implies potential use of third-party services, but the evidence does not confirm specific third-party dependencies or configurations; therefore a medium likelihood with high impact is appropriate.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Insufficient device management and operational controls for mobile",
+                    "category": "administrative_routines",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks; the Android phone is used to access work emails; the Android phone is used to access work documents",
+                    "description": "If mobile devices are not centrally managed (e.g., no MDM/EMM), operational routines like enforcing encryption, remote wipe, app control and patch deployment may be missing.",
+                    "possible_consequence": "Inability to respond to device loss or compromise, inconsistent security posture across devices, and elevated breach risk.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Multiple indicators show the phone is used for sensitive work tasks; absent explicit evidence of management controls, insufficient management is plausible at a medium likelihood while impacts from unmanaged devices are high.",
+                    "eits_support": "E-ITS (Page 32) highlights risks from lack of central overview of access and identity management; Page 21 also notes that organisational measures may be ignored—both support concerns about device management gaps."
+                },
+                {
+                    "risk_name": "Lateral movement from mobile compromise to corporate endpoints",
+                    "category": "system_configuration",
+                    "evidence": "user reuses the same password for every service; the Android phone is used to access work emails; user has a company-issued computer",
+                    "description": "A compromised mobile (via phishing, malware or stolen credentials) can be used to access email or credentials that enable attackers to move laterally to corporate computers and services.",
+                    "possible_consequence": "Compromise of internal networks and systems, widespread data exfiltration and prolonged undetected intrusion.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Evidence of password reuse plus mobile access to email and possession of a company computer creates a clear path for lateral movement; likelihood of successful lateral escalation is high and potential impact on the organisation is very severe.",
+                    "eits_support": "E-ITS (Page 21 and Page 32) describes how password reuse and inadequate identity/access management enable misuse and enduring access, supporting the lateral-movement risk."
+                },
+                {
+                    "risk_name": "Device-level security controls bypass via admin access",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-issued computer; user has administrative privileges on the company-issued computer",
+                    "description": "Local admin users can disable or circumvent security controls (antivirus, patching, logging), change configurations or install root certificates that undermine security controls.",
+                    "possible_consequence": "Reduced detection and prevention capability, persistence of attackers, and broader compromise of systems and data.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Admin privileges explicitly present enable users (or attackers who compromise admin accounts) to bypass security controls; this is likely and would have very severe effects on detection and containment.",
+                    "eits_support": "E-ITS (Page 32) warns that incomplete identity and rights management can result in inappropriate access and persistent exposure, supporting this assessment."
+                },
+                {
+                    "risk_name": "Compliance and privacy breaches from mixed personal/work use",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks; the Android phone is used to access work emails; the Android phone is used to access work documents",
+                    "description": "Using a company phone for both personal and work tasks can lead to mixing of personal data with corporate information and uncontrolled sharing of regulated data.",
+                    "possible_consequence": "Violation of data protection regulations, legal penalties, damage to customer trust and contractual breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Evidence confirms work use of the device; while personal use is not explicitly stated, mixed-use is common and would create a medium-likelihood risk with significant compliance and privacy impacts.",
+                    "eits_support": "E-ITS (Page 21) notes negligence and mixing of data can lead to data leaks and failure to follow policies, supporting concerns about compliance breaches from mixed use."
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse across services",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "Using the same password for multiple services means a credential exposed in one breach can be used to access other online accounts belonging to the user.",
+                    "possible_consequence": "Account takeover across multiple services, loss of personal and work data, unauthorized transactions or identity theft.",
+                    "likelihood": "Very High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "The evidence explicitly states the user reuses the same password for every service, which makes compromise in one breach almost certain to affect other accounts; consequences are severe for affected accounts.",
+                    "eits_support": "E-ITS (Page 21) specifically highlights that use of the same passwords on social networks and in the working environment can lead to misuse of IT systems, supporting the elevated likelihood and impact.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High risk with broad account impact; reduce by enforcing unique credentials, password manager use and MFA per E-ITS guidance on employee awareness and password misuse."
+                },
+                {
+                    "risk_name": "Same credential for work accounts",
+                    "category": "personnel",
+                    "evidence": "the same password is used for work accounts",
+                    "description": "Work accounts protected by the same password are all vulnerable if that single credential is compromised.",
+                    "possible_consequence": "Compromise of corporate email, document stores, and internal services, leading to data breaches and operational disruption.",
+                    "likelihood": "Very High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Evidence confirms a single password protects multiple work accounts; compromise of that credential would likely yield broad access to corporate resources with severe organizational consequences.",
+                    "eits_support": "E-ITS (Page 21 and Page 32) warns that password reuse and inadequate identity/right management can enable misuse and continued access to sensitive systems, supporting the assessment.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high organisational impact; not acceptable. Reduce by enforcing strong password policies, per-account credentials, MFA and privileged account management as recommended by E-ITS."
+                },
+                {
+                    "risk_name": "Single-breach escalation to enterprise compromise",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password for every service; the same password is used for work accounts",
+                    "description": "If an attacker obtains the reused credential from any service (personal or third-party), they can escalate to access all work-related accounts and systems that use the same credential.",
+                    "possible_consequence": "Widespread account takeover, exfiltration of confidential corporate data, fraud, reputational damage and regulatory penalties.",
+                    "likelihood": "Very High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Combined evidence shows universal reuse including work credentials; an attacker obtaining one credential can likely escalate to enterprise systems, producing very severe impacts.",
+                    "eits_support": "E-ITS (Page 21 and Page 32) describes how password reuse and inadequate identity management can lead to misuse and prolonged access, supporting this escalation risk.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high organisational risk from escalation; reduce through MFA, conditional access, credential hygiene and rapid detection/response consistent with E-ITS concerns."
+                },
+                {
+                    "risk_name": "Absence or failure of enforced password policy",
+                    "category": "organisational_structure",
+                    "evidence": "user reuses the same password for every service",
+                    "description": "User password reuse indicates lack of effective organisational controls (policy enforcement, technical controls like unique-password enforcement, or training) to prevent weak credential practices.",
+                    "possible_consequence": "Elevated probability of credential compromise across the organisation and inability to meet security/compliance requirements.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "User behaviour is indicative of ineffective enforcement or absence of controls (policy, technical or training) that would prevent reuse; this materially increases organisational exposure.",
+                    "eits_support": "E-ITS (Page 21) notes employees may ignore organisational measures and that password reuse can lead to misuse; Page 32 highlights identity management/process gaps, supporting the finding.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High risk to organisational security posture; reduce by implementing and enforcing password policies, technical enforcement (length/complexity/rotation or passphrases), and user training per E-ITS."
+                },
+                {
+                    "risk_name": "Theft or loss of company devices exposing corporate data",
+                    "category": "physical_environment",
+                    "evidence": "user has a company-issued computer; user has a company-provided Android phone",
+                    "description": "Company-owned devices, if lost or stolen, can provide direct access to locally stored or cached corporate data and logged-in sessions if not properly protected.",
+                    "possible_consequence": "Disclosure of sensitive corporate information, unauthorized access to accounts, and subsequent data breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Presence of company devices creates a plausible risk of loss/theft; while not certain, loss would likely expose sensitive data and sessions, producing significant impact.",
+                    "eits_support": "E-ITS (Page 21) discusses manipulation/misuse of IT equipment leading to data leaks, which supports the risk of device loss or theft exposing corporate data.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium likelihood but high impact; reduce via device encryption, screen lock, remote wipe, asset tracking and user training as aligned with E-ITS guidance."
+                },
+                {
+                    "risk_name": "Mobile operating system vulnerabilities due to insufficient patching",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-provided Android phone",
+                    "description": "Android devices that are not regularly updated or are out-of-support are susceptible to known vulnerabilities that can be exploited to compromise the device and its data.",
+                    "possible_consequence": "Remote compromise of the phone, interception of communications, unauthorized access to work email/documents and lateral attacks into corporate systems.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "The presence of an Android device creates exposure to OS vulnerabilities if not patched; absent evidence of patching status, a moderate likelihood is appropriate while impact of a successful exploit is high.",
+                    "eits_support": "E-ITS (Page 21) highlights that negligence and insufficient qualifications can lead to security failures; this supports concerns about unpatched mobile devices contributing to vulnerabilities.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk with significant impact; reduce by ensuring OS patch management, update policy and managed device configurations per E-ITS recommendations."
+                },
+                {
+                    "risk_name": "Excessive privilege on company computer enabling malware persistence",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-issued computer; user has administrative privileges on the company-issued computer",
+                    "description": "Local administrative privileges allow installation of software, modification of system security settings, and persistence mechanisms that malware can exploit.",
+                    "possible_consequence": "Installation of persistent malware, disabling of endpoint security, broad compromise of corporate network and data exfiltration.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Evidence of local admin rights significantly increases the likelihood that malware (if introduced) can achieve persistence and disable controls; such persistence can lead to very severe organisational compromise.",
+                    "eits_support": "E-ITS (Page 32) stresses the importance of managing identity and rights; administrative rights enabling circumvention of controls aligns with those concerns.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high impact from admin-enabled persistence; reduce by removing unnecessary admin rights, implementing least privilege and privileged access management as per E-ITS."
+                },
+                {
+                    "risk_name": "Misuse or compromise of privileged account (insider or external)",
+                    "category": "personnel",
+                    "evidence": "user has administrative privileges on the company-issued computer",
+                    "description": "A user with admin privileges can intentionally or inadvertently perform damaging actions, or an attacker who compromises that user can leverage the privileges for extended impact.",
+                    "possible_consequence": "Unauthorized changes to systems, data deletion or theft, creation of backdoors, and severe operational impact.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Admin privileges provide the capability for both malicious insider actions and amplified impact following compromise; given those capabilities the likelihood of significant misuse is elevated and impacts are very severe.",
+                    "eits_support": "E-ITS (Page 32) notes that incomplete identity and rights management can leave excessive access in place, supporting the elevated risk of privileged misuse or compromise.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high risk; reduce via privileged account controls, separation of duties, monitoring/auditing and rapid revocation processes per E-ITS guidance."
+                },
+                {
+                    "risk_name": "Unrestricted app permissions and privacy settings on mobile",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks",
+                    "description": "If apps on the device have broad permissions (contacts, storage, microphone, camera) and privacy settings are not restrictive, apps can access and exfiltrate corporate data.",
+                    "possible_consequence": "Leakage of contacts, emails, documents or credentials to malicious apps leading to data breaches and unauthorized contact harvesting.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Work use of a mobile device increases the chance that apps could be granted broad permissions; without explicit evidence about permission settings, a medium likelihood is appropriate, but the potential impact is high.",
+                    "eits_support": "E-ITS (Page 21) highlights that negligence and misuse of IT equipment can lead to data leaks, which supports concern about app permissions exposing corporate data.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk with high impact; reduce by enforcing app permission policies, using managed app stores and MDM controls consistent with E-ITS."
+                },
+                {
+                    "risk_name": "Personal apps on company phone accessing corporate resources",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks",
+                    "description": "Allowing personal use or installation of personal apps on corporate phones increases the chance that third‑party apps will access corporate information or introduce malware.",
+                    "possible_consequence": "Data exfiltration, compromise of corporate accounts and contact lists, and increased risk of targeted attacks using harvested information.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Evidence shows the device is used for work tasks. If personal apps are present (not stated explicitly), they can access corporate resources—hence a medium likelihood and high impact are appropriate absent confirmation of policy enforcement.",
+                    "eits_support": "E-ITS (Page 21) warns that organisational and technical measures can be ignored for convenience and that mixed personal/work use can lead to misuse, supporting this risk.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk; reduce by enforcing separation of work/personal profiles, app installation controls and user policies per E-ITS recommendations."
+                },
+                {
+                    "risk_name": "Increased phishing and mail-based attack surface via mobile",
+                    "category": "hardware_software_communication",
+                    "evidence": "the Android phone is used to access work emails",
+                    "description": "Accessing work email on a mobile device increases exposure to phishing, malicious links and attachments which may be easier to accept or act on via mobile.",
+                    "possible_consequence": "Credential theft, malware infection, business email compromise leading to financial loss and data breaches.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Using mobile for work email is explicitly stated; mobile devices commonly increase susceptibility to phishing and accidental interaction with malicious content, making likelihood and impact both high.",
+                    "eits_support": "E-ITS (Page 21) emphasizes that lack of awareness and negligence increase susceptibility to attacks, backing the elevated phishing risk for mobile email.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High-risk vector; reduce through targeted user training, mobile email protections, link/attachment scanning and MFA as advised by E-ITS."
+                },
+                {
+                    "risk_name": "Document exfiltration from mobile access",
+                    "category": "hardware_software_communication",
+                    "evidence": "the Android phone is used to access work documents",
+                    "description": "Work documents accessed on the phone can be copied, synced or uploaded by apps or users to external services or personal accounts.",
+                    "possible_consequence": "Unauthorized disclosure of sensitive documents, leakage of intellectual property or regulated data, and compliance violations.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Direct evidence shows work documents are accessed from the mobile device; copying or syncing to external services is an easy and common vector, yielding a high likelihood and high impact if exfiltrated.",
+                    "eits_support": "E-ITS (Page 21) notes that misuse and circumvention of controls can lead to data leaks, supporting the concern over document exfiltration from mobile devices.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High impact risk; reduce via DLP, managed file access, containerisation and MDM policies consistent with E-ITS."
+                },
+                {
+                    "risk_name": "Third-party cloud and app dependency leading to data exposure",
+                    "category": "external_dependencies",
+                    "evidence": "the company Android phone is used for work-related tasks; the Android phone is used to access work documents",
+                    "description": "Mobile access often involves third-party cloud services and apps; vulnerabilities or misconfigurations in those external services can expose corporate data.",
+                    "possible_consequence": "Data breaches via third-party providers, loss of control over data residency, and supply-chain security incidents.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Mobile document access implies potential use of third-party services, but the evidence does not confirm specific third-party dependencies or configurations; therefore a medium likelihood with high impact is appropriate.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk with significant impact; reduce by assessing third-party services, contractual controls, secure configurations and monitoring per supply-chain guidance."
+                },
+                {
+                    "risk_name": "Insufficient device management and operational controls for mobile",
+                    "category": "administrative_routines",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks; the Android phone is used to access work emails; the Android phone is used to access work documents",
+                    "description": "If mobile devices are not centrally managed (e.g., no MDM/EMM), operational routines like enforcing encryption, remote wipe, app control and patch deployment may be missing.",
+                    "possible_consequence": "Inability to respond to device loss or compromise, inconsistent security posture across devices, and elevated breach risk.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Multiple indicators show the phone is used for sensitive work tasks; absent explicit evidence of management controls, insufficient management is plausible at a medium likelihood while impacts from unmanaged devices are high.",
+                    "eits_support": "E-ITS (Page 32) highlights risks from lack of central overview of access and identity management; Page 21 also notes that organisational measures may be ignored—both support concerns about device management gaps.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk to operational response and security; reduce with MDM deployment, remote wipe, enforced encryption and patching consistent with E-ITS recommendations."
+                },
+                {
+                    "risk_name": "Lateral movement from mobile compromise to corporate endpoints",
+                    "category": "system_configuration",
+                    "evidence": "user reuses the same password for every service; the Android phone is used to access work emails; user has a company-issued computer",
+                    "description": "A compromised mobile (via phishing, malware or stolen credentials) can be used to access email or credentials that enable attackers to move laterally to corporate computers and services.",
+                    "possible_consequence": "Compromise of internal networks and systems, widespread data exfiltration and prolonged undetected intrusion.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Evidence of password reuse plus mobile access to email and possession of a company computer creates a clear path for lateral movement; likelihood of successful lateral escalation is high and potential impact on the organisation is very severe.",
+                    "eits_support": "E-ITS (Page 21 and Page 32) describes how password reuse and inadequate identity/access management enable misuse and enduring access, supporting the lateral-movement risk.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high enterprise risk; reduce using MFA, conditional access, network segmentation, endpoint detection and credential hygiene as advised by E-ITS."
+                },
+                {
+                    "risk_name": "Device-level security controls bypass via admin access",
+                    "category": "system_configuration",
+                    "evidence": "user has a company-issued computer; user has administrative privileges on the company-issued computer",
+                    "description": "Local admin users can disable or circumvent security controls (antivirus, patching, logging), change configurations or install root certificates that undermine security controls.",
+                    "possible_consequence": "Reduced detection and prevention capability, persistence of attackers, and broader compromise of systems and data.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Admin privileges explicitly present enable users (or attackers who compromise admin accounts) to bypass security controls; this is likely and would have very severe effects on detection and containment.",
+                    "eits_support": "E-ITS (Page 32) warns that incomplete identity and rights management can result in inappropriate access and persistent exposure, supporting this assessment.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high risk to detection and containment; reduce by removing unnecessary admin rights, enforcing endpoint control policies and privileged access governance per E-ITS."
+                },
+                {
+                    "risk_name": "Compliance and privacy breaches from mixed personal/work use",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has a company-provided Android phone; the company Android phone is used for work-related tasks; the Android phone is used to access work emails; the Android phone is used to access work documents",
+                    "description": "Using a company phone for both personal and work tasks can lead to mixing of personal data with corporate information and uncontrolled sharing of regulated data.",
+                    "possible_consequence": "Violation of data protection regulations, legal penalties, damage to customer trust and contractual breaches.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Evidence confirms work use of the device; while personal use is not explicitly stated, mixed-use is common and would create a medium-likelihood risk with significant compliance and privacy impacts.",
+                    "eits_support": "E-ITS (Page 21) notes negligence and mixing of data can lead to data leaks and failure to follow policies, supporting concerns about compliance breaches from mixed use.",
+                    "acceptable": false,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium compliance risk; reduce by policy enforcement, separation of work/personal data, data handling controls and user awareness per E-ITS."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 4,
+        "scenario": "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work tasks. Our company relies on cloud services such as Google Drive to store and share data.",
+        "facts": [
+            "user reuses same password across all services",
+            "user uses a company-issued computer",
+            "user has administrative privileges on company computer",
+            "user uses a company-provided Android phone for work tasks",
+            "company relies on cloud services such as Google Drive to store and share data"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse leading to account takeover",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Using the same password across multiple services makes it likely that a credential exposed in one breach will allow attackers to take over other accounts belonging to the user.",
+                    "possible_consequence": "Unauthorized access to corporate accounts, data theft, unauthorized transactions, lateral movement into other systems, reputational and financial damage."
+                },
+                {
+                    "risk_name": "Administrative account takeover due to reused credentials",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services; user has administrative privileges on company computer",
+                    "description": "If an administrative user's reused password is compromised on any service, attackers can use it to obtain privileged access on the company computer and perform high-impact administrative actions.",
+                    "possible_consequence": "Full system compromise, installation of persistent malware, deletion or exfiltration of sensitive data, disruption of services and inability to prove/trace admin actions."
+                },
+                {
+                    "risk_name": "Cloud account compromise via reused credentials",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses same password across all services; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reused credentials used for cloud accounts make the organisation dependent on a single compromised password to expose cloud-hosted data and collaboration spaces.",
+                    "possible_consequence": "Mass disclosure of sensitive files, data exfiltration, unauthorized sharing of documents, regulatory exposure and business continuity impact due to compromised cloud resources."
+                },
+                {
+                    "risk_name": "Device theft or loss enables account compromise when passwords are reused",
+                    "category": "physical_environment",
+                    "evidence": "user reuses same password across all services; user uses a company-provided Android phone for work tasks",
+                    "description": "If the same password is used for accounts accessible from a mobile device, loss or theft of that device (or access to credentials stored on it) can allow attackers to use the reused password to access multiple services.",
+                    "possible_consequence": "Access to corporate email, cloud storage and other accounts from the stolen device, data leakage, impersonation, and unauthorized changes to company data."
+                },
+                {
+                    "risk_name": "Unpatched or misconfigured company-issued computer",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "A company-issued computer that is not properly configured, hardened, or regularly updated can contain exploitable vulnerabilities that attackers can use to gain access to the corporate network.",
+                    "possible_consequence": "Malware infection, privilege escalation, lateral movement across the corporate network, data exfiltration and service disruption."
+                },
+                {
+                    "risk_name": "Local data exposure on company-issued computer",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "Sensitive data synced or stored on the company-issued device may be exposed if the device is lost, stolen, or accessed by an unauthorized person.",
+                    "possible_consequence": "Disclosure of confidential information, loss of intellectual property, regulatory non-compliance and reputational harm."
+                },
+                {
+                    "risk_name": "Performing daily work with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on company computer",
+                    "description": "Using an administrative account for routine tasks increases the likelihood that malware or user mistakes will execute with elevated rights, bypassing endpoint protections and making mitigation harder.",
+                    "possible_consequence": "Rapid system compromise, installation of persistent backdoors, broader network compromise and difficulty in incident recovery."
+                },
+                {
+                    "risk_name": "Insufficient administrative operation auditing",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has administrative privileges on company computer",
+                    "description": "If administrative operations are not captured and provably auditable (what was done, when, and by whom), malicious or erroneous admin activity may go undetected or be unassignable.",
+                    "possible_consequence": "Delayed detection of misuse or compromise, inability to perform effective forensic investigations, and failure to meet regulatory/audit requirements."
+                },
+                {
+                    "risk_name": "Outdated or unsupported mobile OS and apps",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "If mobile devices or their apps are not kept up to date or are running unsupported versions, known vulnerabilities can be exploited remotely or locally.",
+                    "possible_consequence": "Compromise of the mobile device, interception of communications, unauthorized access to corporate resources and data leakage."
+                },
+                {
+                    "risk_name": "Excessive app permissions and data access on mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "Apps on the device may request or be granted more access than needed (contacts, storage, camera, networks), enabling data exfiltration or abuse of device interfaces.",
+                    "possible_consequence": "Unauthorized collection or transmission of corporate data, covert surveillance, and compromise of credentials or tokens stored on the device."
+                },
+                {
+                    "risk_name": "Lost/stolen mobile device granting access to cloud services",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-provided Android phone for work tasks; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Mobile access to cloud services means a lost or stolen phone can become an entry point to corporate files and collaboration tools unless strong device and account protections are in place.",
+                    "possible_consequence": "Unauthorised access to cloud-hosted documents, sharing or deletion of files, data exfiltration and possible account takeover."
+                },
+                {
+                    "risk_name": "Dependence on external cloud provider availability and security",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Relying on third-party cloud services introduces risks from outages, third-party breaches, and provider-side misconfigurations outside the company's direct control.",
+                    "possible_consequence": "Service downtime affecting productivity, exposure of sensitive data through provider breach, and loss of control over access and data handling practices."
+                },
+                {
+                    "risk_name": "Improper cloud sharing and access management",
+                    "category": "processes_and_procedures",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Inadequate processes for controlling sharing settings and access rights can lead to accidental public or overly broad sharing of sensitive files.",
+                    "possible_consequence": "Unintended public disclosure of confidential documents, regulatory penalties, and reputational damage."
+                },
+                {
+                    "risk_name": "Local caching/synchronisation of cloud data on endpoints",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Cloud-synchronised files stored locally on company devices increase the amount of sensitive data present on endpoints and hence the impact of endpoint compromise.",
+                    "possible_consequence": "Bulk data exfiltration from a single compromised device, leakage of sensitive documents and increased difficulty in enforcing data control and deletion policies."
+                },
+                {
+                    "risk_name": "Administrator can disable protections or install unapproved tools on company device",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on company computer; user uses a company-issued computer",
+                    "description": "An administrator with local control of the company device can alter security settings, disable controls, or install software that bypasses corporate protections.",
+                    "possible_consequence": "Weakened endpoint defenses, persistent unauthorized software, increased exposure to malware and loss of centralized control over security posture."
+                },
+                {
+                    "risk_name": "Multiple corporate endpoints increase attack surface and cross-device compromise",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-issued computer; user uses a company-provided Android phone for work tasks",
+                    "description": "Use of both a company computer and a company mobile device for work increases the number of interfaces and channels (sync, authentication, app integrations) an attacker can exploit to move between devices and services.",
+                    "possible_consequence": "Compromise of one device leading to compromise of the other, credential/token theft propagation, broader access to corporate resources and data leakage."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse leading to account takeover",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Using the same password across multiple services makes it likely that a credential exposed in one breach will allow attackers to take over other accounts belonging to the user.",
+                    "possible_consequence": "Unauthorized access to corporate accounts, data theft, unauthorized transactions, lateral movement into other systems, reputational and financial damage.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse across all services materially increases the chance that a single breach or credential leak will enable account takeover across multiple services and subsequent lateral movement.",
+                    "eits_support": "E-ITS guidance (OPS.1.1.2.M6) explicitly discourages reuse of passwords across administrative zones and requires stronger authentication for higher-protection accounts, supporting the assessment that reuse is a meaningful risk."
+                },
+                {
+                    "risk_name": "Administrative account takeover due to reused credentials",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services; user has administrative privileges on company computer",
+                    "description": "If an administrative user's reused password is compromised on any service, attackers can use it to obtain privileged access on the company computer and perform high-impact administrative actions.",
+                    "possible_consequence": "Full system compromise, installation of persistent malware, deletion or exfiltration of sensitive data, disruption of services and inability to prove/trace admin actions.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Credential reuse combined with the presence of administrative privileges makes it likely that a compromised credential would be used to obtain high-privilege access, enabling devastating actions (persistence, full compromise).",
+                    "eits_support": "Directly supported: E-ITS (OPS.1.1.2.M6 and related text) requires that administrative accounts be protected with suitable authentication, not reuse passwords across administrative zones, use MFA where needed, and restrict privileged account use—underscoring the elevated impact of admin credential compromise."
+                },
+                {
+                    "risk_name": "Cloud account compromise via reused credentials",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses same password across all services; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reused credentials used for cloud accounts make the organisation dependent on a single compromised password to expose cloud-hosted data and collaboration spaces.",
+                    "possible_consequence": "Mass disclosure of sensitive files, data exfiltration, unauthorized sharing of documents, regulatory exposure and business continuity impact due to compromised cloud resources.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Reused credentials increase the probability that attackers can access cloud accounts; given cloud-hosted data and collaboration, compromise can lead to broad exposure and operational impact.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Device theft or loss enables account compromise when passwords are reused",
+                    "category": "physical_environment",
+                    "evidence": "user reuses same password across all services; user uses a company-provided Android phone for work tasks",
+                    "description": "If the same password is used for accounts accessible from a mobile device, loss or theft of that device (or access to credentials stored on it) can allow attackers to use the reused password to access multiple services.",
+                    "possible_consequence": "Access to corporate email, cloud storage and other accounts from the stolen device, data leakage, impersonation, and unauthorized changes to company data.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "While device loss/theft is plausible and password reuse magnifies the impact, absence of specific evidence of frequent loss or lack of device protections supports a medium likelihood; consequences are high if exploitation occurs.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Unpatched or misconfigured company-issued computer",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "A company-issued computer that is not properly configured, hardened, or regularly updated can contain exploitable vulnerabilities that attackers can use to gain access to the corporate network.",
+                    "possible_consequence": "Malware infection, privilege escalation, lateral movement across the corporate network, data exfiltration and service disruption.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "The presence of a company-issued device creates the possibility of misconfiguration or missing patches; common exploitation paths make impact high, but no explicit evidence of unpatched state lowers likelihood to medium.",
+                    "eits_support": "E-ITS highlights the sensitivity of administrative and domain infrastructure (AD DS) to misconfiguration and insufficient protection, which supports concern that insecure endpoints can threaten domain security."
+                },
+                {
+                    "risk_name": "Local data exposure on company-issued computer",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "Sensitive data synced or stored on the company-issued device may be exposed if the device is lost, stolen, or accessed by an unauthorized person.",
+                    "possible_consequence": "Disclosure of confidential information, loss of intellectual property, regulatory non-compliance and reputational harm.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Company-issued devices commonly store synced or cached data; without evidence of encryption or controls, exposure is plausible (medium likelihood) and consequences are significant (high impact).",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Performing daily work with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on company computer",
+                    "description": "Using an administrative account for routine tasks increases the likelihood that malware or user mistakes will execute with elevated rights, bypassing endpoint protections and making mitigation harder.",
+                    "possible_consequence": "Rapid system compromise, installation of persistent backdoors, broader network compromise and difficulty in incident recovery.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Administrative privileges exist, which raises the possibility that such accounts are used for daily tasks; this increases the potential impact of user errors or malware, though evidence does not confirm daily use.",
+                    "eits_support": "Directly supported: E-ITS (OPS.1.1.2.M6) prescribes that IT administrators have regular accounts for daily tasks and privileged accounts are not used for routine duties."
+                },
+                {
+                    "risk_name": "Insufficient administrative operation auditing",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has administrative privileges on company computer",
+                    "description": "If administrative operations are not captured and provably auditable (what was done, when, and by whom), malicious or erroneous admin activity may go undetected or be unassignable.",
+                    "possible_consequence": "Delayed detection of misuse or compromise, inability to perform effective forensic investigations, and failure to meet regulatory/audit requirements.",
+                    "likelihood": "Medium",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Existence of admin privileges creates the need for auditing; absent explicit evidence of logging/auditing, insufficient auditing is plausibly present (medium likelihood) with moderate to significant consequences for detection and forensics (medium impact).",
+                    "eits_support": "Directly supported: E-ITS states all administrative operations (what was done, when, and by whom) can be proven after the fact, indicating auditing is a required control."
+                },
+                {
+                    "risk_name": "Outdated or unsupported mobile OS and apps",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "If mobile devices or their apps are not kept up to date or are running unsupported versions, known vulnerabilities can be exploited remotely or locally.",
+                    "possible_consequence": "Compromise of the mobile device, interception of communications, unauthorized access to corporate resources and data leakage.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Mobile devices commonly fall behind on updates; without explicit evidence of patching posture the likelihood is medium while impact of exploitation of mobile vulnerabilities is high.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Excessive app permissions and data access on mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "Apps on the device may request or be granted more access than needed (contacts, storage, camera, networks), enabling data exfiltration or abuse of device interfaces.",
+                    "possible_consequence": "Unauthorized collection or transmission of corporate data, covert surveillance, and compromise of credentials or tokens stored on the device.",
+                    "likelihood": "Medium",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Use of a mobile device for work raises the plausible chance that apps have excessive permissions; consequences are moderate if exploited and may lead to data leakage.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Lost/stolen mobile device granting access to cloud services",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-provided Android phone for work tasks; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Mobile access to cloud services means a lost or stolen phone can become an entry point to corporate files and collaboration tools unless strong device and account protections are in place.",
+                    "possible_consequence": "Unauthorised access to cloud-hosted documents, sharing or deletion of files, data exfiltration and possible account takeover.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Combining mobile access to cloud services with a company device increases the probability that device loss/theft leads to cloud access; the impact on data confidentiality and continuity is high.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Dependence on external cloud provider availability and security",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Relying on third-party cloud services introduces risks from outages, third-party breaches, and provider-side misconfigurations outside the company's direct control.",
+                    "possible_consequence": "Service downtime affecting productivity, exposure of sensitive data through provider breach, and loss of control over access and data handling practices.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Third-party provider incidents and outages occur with moderate frequency; reliance on an external provider makes the organisation susceptible to high-impact availability and confidentiality events, though likelihood is not certain.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Improper cloud sharing and access management",
+                    "category": "processes_and_procedures",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Inadequate processes for controlling sharing settings and access rights can lead to accidental public or overly broad sharing of sensitive files.",
+                    "possible_consequence": "Unintended public disclosure of confidential documents, regulatory penalties, and reputational damage.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Cloud collaboration frequently results in misconfigured sharing; without explicit evidence of governance controls, medium likelihood is appropriate and potential impact is high.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Local caching/synchronisation of cloud data on endpoints",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Cloud-synchronised files stored locally on company devices increase the amount of sensitive data present on endpoints and hence the impact of endpoint compromise.",
+                    "possible_consequence": "Bulk data exfiltration from a single compromised device, leakage of sensitive documents and increased difficulty in enforcing data control and deletion policies.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Local synchronization of cloud data is common; combining endpoint compromise with local caches makes large-scale data exposure likely and impactful.",
+                    "eits_support": "No direct E-ITS support found"
+                },
+                {
+                    "risk_name": "Administrator can disable protections or install unapproved tools on company device",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on company computer; user uses a company-issued computer",
+                    "description": "An administrator with local control of the company device can alter security settings, disable controls, or install software that bypasses corporate protections.",
+                    "possible_consequence": "Weakened endpoint defenses, persistent unauthorized software, increased exposure to malware and loss of centralized control over security posture.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Presence of administrative privileges on a company device makes it highly likely that protections can be disabled or unapproved software installed, enabling persistent compromise and loss of centralized control—leading to very high impact.",
+                    "eits_support": "Directly supported: E-ITS recommends restricting administrative operations, separating privileged accounts from daily use, and protecting admin accounts—measures aimed at preventing exactly this type of risk."
+                },
+                {
+                    "risk_name": "Multiple corporate endpoints increase attack surface and cross-device compromise",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-issued computer; user uses a company-provided Android phone for work tasks",
+                    "description": "Use of both a company computer and a company mobile device for work increases the number of interfaces and channels (sync, authentication, app integrations) an attacker can exploit to move between devices and services.",
+                    "possible_consequence": "Compromise of one device leading to compromise of the other, credential/token theft propagation, broader access to corporate resources and data leakage.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Multiple endpoints broaden the attack surface and provide plausible cross-device attack paths (sync, shared credentials, tokens); compromise of one is likely to affect the other and impact is high.",
+                    "eits_support": "No direct E-ITS support found"
+                }
+            ]
+        },
+        "evaluated_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse leading to account takeover",
+                    "category": "personnel",
+                    "evidence": "user reuses same password across all services",
+                    "description": "Using the same password across multiple services makes it likely that a credential exposed in one breach will allow attackers to take over other accounts belonging to the user.",
+                    "possible_consequence": "Unauthorized access to corporate accounts, data theft, unauthorized transactions, lateral movement into other systems, reputational and financial damage.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Password reuse across all services materially increases the chance that a single breach or credential leak will enable account takeover across multiple services and subsequent lateral movement.",
+                    "eits_support": "E-ITS guidance (OPS.1.1.2.M6) explicitly discourages reuse of passwords across administrative zones and requires stronger authentication for higher-protection accounts, supporting the assessment that reuse is a meaningful risk.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High-severity risk driven by pervasive password reuse and severe potential impacts; not acceptable and should be reduced (e.g., enforce unique passwords, MFA, password managers) in line with E-ITS guidance."
+                },
+                {
+                    "risk_name": "Administrative account takeover due to reused credentials",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses same password across all services; user has administrative privileges on company computer",
+                    "description": "If an administrative user's reused password is compromised on any service, attackers can use it to obtain privileged access on the company computer and perform high-impact administrative actions.",
+                    "possible_consequence": "Full system compromise, installation of persistent malware, deletion or exfiltration of sensitive data, disruption of services and inability to prove/trace admin actions.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Credential reuse combined with the presence of administrative privileges makes it likely that a compromised credential would be used to obtain high-privilege access, enabling devastating actions (persistence, full compromise).",
+                    "eits_support": "Directly supported: E-ITS (OPS.1.1.2.M6 and related text) requires that administrative accounts be protected with suitable authentication, not reuse passwords across administrative zones, use MFA where needed, and restrict privileged account use—underscoring the elevated impact of admin credential compromise.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high-severity risk affecting privileged accounts; unacceptable and should be reduced urgently (privileged access management, MFA, separation of duties) per E-ITS recommendations."
+                },
+                {
+                    "risk_name": "Cloud account compromise via reused credentials",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses same password across all services; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reused credentials used for cloud accounts make the organisation dependent on a single compromised password to expose cloud-hosted data and collaboration spaces.",
+                    "possible_consequence": "Mass disclosure of sensitive files, data exfiltration, unauthorized sharing of documents, regulatory exposure and business continuity impact due to compromised cloud resources.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Reused credentials increase the probability that attackers can access cloud accounts; given cloud-hosted data and collaboration, compromise can lead to broad exposure and operational impact.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High risk to cloud-hosted data from credential reuse; unacceptable and should be reduced through strong auth, conditional access, and cloud access controls."
+                },
+                {
+                    "risk_name": "Device theft or loss enables account compromise when passwords are reused",
+                    "category": "physical_environment",
+                    "evidence": "user reuses same password across all services; user uses a company-provided Android phone for work tasks",
+                    "description": "If the same password is used for accounts accessible from a mobile device, loss or theft of that device (or access to credentials stored on it) can allow attackers to use the reused password to access multiple services.",
+                    "possible_consequence": "Access to corporate email, cloud storage and other accounts from the stolen device, data leakage, impersonation, and unauthorized changes to company data.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "While device loss/theft is plausible and password reuse magnifies the impact, absence of specific evidence of frequent loss or lack of device protections supports a medium likelihood; consequences are high if exploitation occurs.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium-severity risk that should be reduced by enforcing device protections (screen lock, remote wipe, MFA) and reducing password reuse to limit impact from lost/stolen devices."
+                },
+                {
+                    "risk_name": "Unpatched or misconfigured company-issued computer",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "A company-issued computer that is not properly configured, hardened, or regularly updated can contain exploitable vulnerabilities that attackers can use to gain access to the corporate network.",
+                    "possible_consequence": "Malware infection, privilege escalation, lateral movement across the corporate network, data exfiltration and service disruption.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "The presence of a company-issued device creates the possibility of misconfiguration or missing patches; common exploitation paths make impact high, but no explicit evidence of unpatched state lowers likelihood to medium.",
+                    "eits_support": "E-ITS highlights the sensitivity of administrative and domain infrastructure (AD DS) to misconfiguration and insufficient protection, which supports concern that insecure endpoints can threaten domain security.",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk that should be reduced through patch management, hardening baselines and endpoint configuration management, reflecting E-ITS concerns about insecure endpoints threatening domain infrastructure."
+                },
+                {
+                    "risk_name": "Local data exposure on company-issued computer",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "Sensitive data synced or stored on the company-issued device may be exposed if the device is lost, stolen, or accessed by an unauthorized person.",
+                    "possible_consequence": "Disclosure of confidential information, loss of intellectual property, regulatory non-compliance and reputational harm.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Company-issued devices commonly store synced or cached data; without evidence of encryption or controls, exposure is plausible (medium likelihood) and consequences are significant (high impact).",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium-severity data exposure risk; reduce via disk encryption, DLP, and limiting local sync of sensitive cloud data."
+                },
+                {
+                    "risk_name": "Performing daily work with administrative privileges",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on company computer",
+                    "description": "Using an administrative account for routine tasks increases the likelihood that malware or user mistakes will execute with elevated rights, bypassing endpoint protections and making mitigation harder.",
+                    "possible_consequence": "Rapid system compromise, installation of persistent backdoors, broader network compromise and difficulty in incident recovery.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Administrative privileges exist, which raises the possibility that such accounts are used for daily tasks; this increases the potential impact of user errors or malware, though evidence does not confirm daily use.",
+                    "eits_support": "Directly supported: E-ITS (OPS.1.1.2.M6) prescribes that IT administrators have regular accounts for daily tasks and privileged accounts are not used for routine duties.",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk; reduce by enforcing least privilege, using separate non-privileged daily accounts and privileged access management, consistent with E-ITS."
+                },
+                {
+                    "risk_name": "Insufficient administrative operation auditing",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has administrative privileges on company computer",
+                    "description": "If administrative operations are not captured and provably auditable (what was done, when, and by whom), malicious or erroneous admin activity may go undetected or be unassignable.",
+                    "possible_consequence": "Delayed detection of misuse or compromise, inability to perform effective forensic investigations, and failure to meet regulatory/audit requirements.",
+                    "likelihood": "Medium",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Existence of admin privileges creates the need for auditing; absent explicit evidence of logging/auditing, insufficient auditing is plausibly present (medium likelihood) with moderate to significant consequences for detection and forensics (medium impact).",
+                    "eits_support": "Directly supported: E-ITS states all administrative operations (what was done, when, and by whom) can be proven after the fact, indicating auditing is a required control.",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium-severity control/process gap; reduce by implementing comprehensive admin auditing and tamper-evident logs as required by E-ITS."
+                },
+                {
+                    "risk_name": "Outdated or unsupported mobile OS and apps",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "If mobile devices or their apps are not kept up to date or are running unsupported versions, known vulnerabilities can be exploited remotely or locally.",
+                    "possible_consequence": "Compromise of the mobile device, interception of communications, unauthorized access to corporate resources and data leakage.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Mobile devices commonly fall behind on updates; without explicit evidence of patching posture the likelihood is medium while impact of exploitation of mobile vulnerabilities is high.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk; reduce by enforcing mobile OS/app update policies, MDM enrollment and patch management for corporate devices."
+                },
+                {
+                    "risk_name": "Excessive app permissions and data access on mobile device",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "Apps on the device may request or be granted more access than needed (contacts, storage, camera, networks), enabling data exfiltration or abuse of device interfaces.",
+                    "possible_consequence": "Unauthorized collection or transmission of corporate data, covert surveillance, and compromise of credentials or tokens stored on the device.",
+                    "likelihood": "Medium",
+                    "impact": "Medium",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Use of a mobile device for work raises the plausible chance that apps have excessive permissions; consequences are moderate if exploited and may lead to data leakage.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium-severity risk; reduce by limiting app permissions, using app vetting and MDM policies to control installed apps and their privileges."
+                },
+                {
+                    "risk_name": "Lost/stolen mobile device granting access to cloud services",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-provided Android phone for work tasks; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Mobile access to cloud services means a lost or stolen phone can become an entry point to corporate files and collaboration tools unless strong device and account protections are in place.",
+                    "possible_consequence": "Unauthorised access to cloud-hosted documents, sharing or deletion of files, data exfiltration and possible account takeover.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Combining mobile access to cloud services with a company device increases the probability that device loss/theft leads to cloud access; the impact on data confidentiality and continuity is high.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High-severity risk to cloud data from lost/stolen devices; unacceptable and should be reduced through device protections, remote wipe, MFA and conditional access controls."
+                },
+                {
+                    "risk_name": "Dependence on external cloud provider availability and security",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Relying on third-party cloud services introduces risks from outages, third-party breaches, and provider-side misconfigurations outside the company's direct control.",
+                    "possible_consequence": "Service downtime affecting productivity, exposure of sensitive data through provider breach, and loss of control over access and data handling practices.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Third-party provider incidents and outages occur with moderate frequency; reliance on an external provider makes the organisation susceptible to high-impact availability and confidentiality events, though likelihood is not certain.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium-severity third-party risk; reduce via contractual SLAs, redundancy/backups, vendor risk management and appropriate access controls (or partially transfer via contractual terms where appropriate)."
+                },
+                {
+                    "risk_name": "Improper cloud sharing and access management",
+                    "category": "processes_and_procedures",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Inadequate processes for controlling sharing settings and access rights can lead to accidental public or overly broad sharing of sensitive files.",
+                    "possible_consequence": "Unintended public disclosure of confidential documents, regulatory penalties, and reputational damage.",
+                    "likelihood": "Medium",
+                    "impact": "High",
+                    "risk_level": "Medium",
+                    "analysis_justification": "Cloud collaboration frequently results in misconfigured sharing; without explicit evidence of governance controls, medium likelihood is appropriate and potential impact is high.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": true,
+                    "priority": "Medium",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Medium risk that should be reduced by implementing cloud sharing governance, least-privilege access, periodic access reviews and user training."
+                },
+                {
+                    "risk_name": "Local caching/synchronisation of cloud data on endpoints",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Cloud-synchronised files stored locally on company devices increase the amount of sensitive data present on endpoints and hence the impact of endpoint compromise.",
+                    "possible_consequence": "Bulk data exfiltration from a single compromised device, leakage of sensitive documents and increased difficulty in enforcing data control and deletion policies.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Local synchronization of cloud data is common; combining endpoint compromise with local caches makes large-scale data exposure likely and impactful.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High-severity exposure from local caches; unacceptable and should be reduced by limiting local sync, using encryption, DLP and access controls."
+                },
+                {
+                    "risk_name": "Administrator can disable protections or install unapproved tools on company device",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on company computer; user uses a company-issued computer",
+                    "description": "An administrator with local control of the company device can alter security settings, disable controls, or install software that bypasses corporate protections.",
+                    "possible_consequence": "Weakened endpoint defenses, persistent unauthorized software, increased exposure to malware and loss of centralized control over security posture.",
+                    "likelihood": "High",
+                    "impact": "Very High",
+                    "risk_level": "Very High",
+                    "analysis_justification": "Presence of administrative privileges on a company device makes it highly likely that protections can be disabled or unapproved software installed, enabling persistent compromise and loss of centralized control—leading to very high impact.",
+                    "eits_support": "Directly supported: E-ITS recommends restricting administrative operations, separating privileged accounts from daily use, and protecting admin accounts—measures aimed at preventing exactly this type of risk.",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "Very high-severity risk compromising centralized security controls; unacceptable and should be reduced by removing unnecessary local admin rights, enforcing endpoint controls and PAM solutions as per E-ITS."
+                },
+                {
+                    "risk_name": "Multiple corporate endpoints increase attack surface and cross-device compromise",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-issued computer; user uses a company-provided Android phone for work tasks",
+                    "description": "Use of both a company computer and a company mobile device for work increases the number of interfaces and channels (sync, authentication, app integrations) an attacker can exploit to move between devices and services.",
+                    "possible_consequence": "Compromise of one device leading to compromise of the other, credential/token theft propagation, broader access to corporate resources and data leakage.",
+                    "likelihood": "High",
+                    "impact": "High",
+                    "risk_level": "High",
+                    "analysis_justification": "Multiple endpoints broaden the attack surface and provide plausible cross-device attack paths (sync, shared credentials, tokens); compromise of one is likely to affect the other and impact is high.",
+                    "eits_support": "No direct E-ITS support found",
+                    "acceptable": false,
+                    "priority": "High",
+                    "treatment_decision": "reduced",
+                    "evaluation_justification": "High-severity combined-endpoint risk; not acceptable and should be reduced through unified endpoint management, MFA, token protections and limiting cross-device data exposure."
+                }
+            ]
+        }
+    },
+    {
+        "scenario_id": 5,
+        "scenario": "I use the same password for every service. I use a company issued computer where I have administrative privileges. I also use a company provided Android phone for work tasks. Our company relies on cloud services such as Google Drive to store and share data. Employees regularly access these systems to collaborate and manage files.",
+        "facts": [
+            "user reuses the same password across all services",
+            "user uses a company-issued computer",
+            "user has administrative privileges on the company-issued computer",
+            "user uses a company-provided Android phone for work tasks",
+            "company relies on cloud services such as Google Drive to store and share data",
+            "employees regularly access cloud services to collaborate and manage files"
+        ],
+        "identified_risks": {
+            "risks": [
+                {
+                    "risk_name": "Credential reuse enables account takeover",
+                    "category": "personnel",
+                    "evidence": "user reuses the same password across all services",
+                    "description": "When the same password is used across multiple services, credentials leaked from one service can be used to access others (credential stuffing/credential replay).",
+                    "possible_consequence": "Unauthorized access to corporate accounts (email, cloud storage, collaboration platforms), data exfiltration, fraudulent actions performed in the user's name."
+                },
+                {
+                    "risk_name": "Third‑party breach leading to internal access",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses the same password across all services",
+                    "description": "A compromise of a third‑party service (forum, consumer site, etc.) that exposes the user's password can be exploited against corporate services if the same password is used.",
+                    "possible_consequence": "Attacker gains access to corporate cloud accounts or internal systems, causing data breach and potential lateral movement."
+                },
+                {
+                    "risk_name": "Device loss or theft exposes corporate data",
+                    "category": "physical_environment",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "A company‑issued laptop can be lost or stolen while containing cached credentials, unencrypted files, or authenticated sessions.",
+                    "possible_consequence": "Disclosure of sensitive data, unauthorized access to corporate services, and need for incident response and remediation."
+                },
+                {
+                    "risk_name": "Compromised company device due to insufficient endpoint protection",
+                    "category": "system_configuration",
+                    "evidence": "user uses a company-issued computer",
+                    "description": "If the company device lacks up‑to‑date patches, endpoint protection, or secure configuration, it is vulnerable to exploit and persistent malware.",
+                    "possible_consequence": "Malware infection, credential harvesting, lateral movement into corporate network, and loss of integrity/confidentiality of systems."
+                },
+                {
+                    "risk_name": "Local administrative privilege abuse",
+                    "category": "administrative_routines",
+                    "evidence": "user has administrative privileges on the company-issued computer",
+                    "description": "A user with admin rights on a corporate machine can make system‑level changes, install software, or misuse privileges—intentionally or after compromise.",
+                    "possible_consequence": "Installation of persistent malware, disabling of security controls, unauthorized configuration changes, and increased blast radius of any compromise."
+                },
+                {
+                    "risk_name": "Failure to separate admin and daily user accounts",
+                    "category": "processes_and_procedures",
+                    "evidence": "user has administrative privileges on the company-issued computer",
+                    "description": "Using an administrative account for routine tasks violates best practice separation of duties and prevents limiting exposure of privileged credentials.",
+                    "possible_consequence": "Higher chance that routine activities (email, browsing) compromise privileged credentials, enabling full system compromise."
+                },
+                {
+                    "risk_name": "Android OS and vendor update gaps lead to exploitable vulnerabilities",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "Android devices (especially older or low‑cost models) may not receive timely security updates, leaving known vulnerabilities available to attackers.",
+                    "possible_consequence": "Remote code execution or privilege escalation on the device, unauthorized data access, and pivoting to corporate resources."
+                },
+                {
+                    "risk_name": "Abuse of Google account tied to device",
+                    "category": "external_dependencies",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "Google Accounts provide access to many services and device management features. If credentials or tokens tied to the phone are compromised, an attacker can abuse those capabilities.",
+                    "possible_consequence": "Location tracking, device data access or wipe, access to Gmail/Drive/other Google services and linked third‑party services."
+                },
+                {
+                    "risk_name": "Malicious or overly permissive mobile apps exfiltrate corporate data",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-provided Android phone for work tasks",
+                    "description": "Installation of malicious or misconfigured apps can leak data or capture credentials from apps used for work.",
+                    "possible_consequence": "Data leakage from corporate apps, credential compromise, and unauthorized access to cloud services."
+                },
+                {
+                    "risk_name": "Cloud provider compromise or service outage impacts sensitive data",
+                    "category": "external_dependencies",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Reliance on an external cloud provider means a breach, outage, or compromise at the provider can impact corporate data availability and confidentiality.",
+                    "possible_consequence": "Widespread data exposure, disruption of business operations, and regulatory/compliance consequences."
+                },
+                {
+                    "risk_name": "Misconfigured sharing and access controls in cloud storage",
+                    "category": "processes_and_procedures",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Improperly set sharing permissions (public links, overly broad group access) can allow internal or external unauthorized access to sensitive files.",
+                    "possible_consequence": "Accidental or intentional data disclosure to unauthorized parties and loss of confidentiality."
+                },
+                {
+                    "risk_name": "Frequent cloud access expands attack surface",
+                    "category": "personnel",
+                    "evidence": "employees regularly access cloud services to collaborate and manage files",
+                    "description": "Regular access from multiple locations/devices increases exposure to phishing, credential theft, or compromised endpoints.",
+                    "possible_consequence": "Higher probability of account compromise, data leakage, and propagation of malicious files through collaboration workflows."
+                },
+                {
+                    "risk_name": "Insufficient logging and proving of administrative/cloud operations",
+                    "category": "administrative_routines",
+                    "evidence": "employees regularly access cloud services to collaborate and manage files",
+                    "description": "If administrative or privileged actions in cloud services and collaboration tools are not logged/auditable, proving who did what is difficult.",
+                    "possible_consequence": "Inability to investigate incidents, attribute actions, or meet compliance/forensic requirements."
+                },
+                {
+                    "risk_name": "Reused password plus admin privilege enables full device takeover",
+                    "category": "administrative_routines",
+                    "evidence": "user reuses the same password across all services; user has administrative privileges on the company-issued computer",
+                    "description": "If the user's reused password is compromised, an attacker can obtain local administrative access on the company device and perform privileged actions.",
+                    "possible_consequence": "Complete compromise of the device, installation of persistent backdoors, credential harvesting for other corporate systems."
+                },
+                {
+                    "risk_name": "Reused password leads to cloud service takeover and data exfiltration",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses the same password across all services; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "Compromise of reused credentials can be used to access corporate cloud accounts, bypassing provider controls if MFA is absent or weak.",
+                    "possible_consequence": "Mass exfiltration or deletion of corporate data stored or shared in the cloud."
+                },
+                {
+                    "risk_name": "Compromised mobile device provides entry to cloud collaboration",
+                    "category": "external_dependencies",
+                    "evidence": "user uses a company-provided Android phone for work tasks; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "A compromised phone with authenticated cloud sessions or stored tokens can be used to access corporate cloud data and collaboration tools.",
+                    "possible_consequence": "Unauthorized access to shared files, leaking of shared links, and sabotage of collaborative documents."
+                },
+                {
+                    "risk_name": "Admin privileges on corporate device amplify impact of cloud access from that device",
+                    "category": "system_configuration",
+                    "evidence": "user has administrative privileges on the company-issued computer; employees regularly access cloud services to collaborate and manage files",
+                    "description": "An administrative user accessing cloud services from a privileged endpoint can enable malware or credential theft to capture broad access tokens and perform high‑impact operations.",
+                    "possible_consequence": "Attacker leverages local admin compromise to hijack cloud sessions or tokens, leading to large‑scale data access or deletion."
+                },
+                {
+                    "risk_name": "Mobile OS vulnerabilities increase risk of cloud credential theft",
+                    "category": "hardware_software_communication",
+                    "evidence": "user uses a company-provided Android phone for work tasks; employees regularly access cloud services to collaborate and manage files",
+                    "description": "Exploits on Android devices can be used to capture credentials or tokens for cloud services used regularly on those devices.",
+                    "possible_consequence": "Compromised cloud accounts, unauthorized file access, and propagation of malicious content through collaboration tools."
+                },
+                {
+                    "risk_name": "Inadequate access governance for collaborative cloud workflows",
+                    "category": "processes_and_procedures",
+                    "evidence": "company relies on cloud services such as Google Drive to store and share data; employees regularly access cloud services to collaborate and manage files",
+                    "description": "Without clear policies and lifecycle controls (who can share, revoke, review access), collaboration increases the likelihood of stale or excessive access rights.",
+                    "possible_consequence": "Unauthorized access by former employees, contractors, or external collaborators; long‑term exposure of sensitive data."
+                },
+                {
+                    "risk_name": "Compromise of Google account multiplies risk across services and devices",
+                    "category": "external_dependencies",
+                    "evidence": "user reuses the same password across all services; user uses a company-provided Android phone for work tasks; company relies on cloud services such as Google Drive to store and share data",
+                    "description": "A single compromised Google account can give an attacker access to multiple linked services (Drive, Gmail, Play Store, device management) and to data across devices and cloud.",
+                    "possible_consequence": "Cross‑service data breach, device takeover (tracking/wiping), lateral movement to other integrated services and third‑party sites using Google ID."
+                }
+            ]
+        },
+        "analysed_risks": {
+            "risks": [],
+            "parse_error": "empty output"
+        },
+        "evaluated_risks": {
+            "risks": []
+        }
+    }
+]

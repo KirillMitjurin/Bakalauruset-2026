@@ -138,7 +138,7 @@ def get_eits_context_for_risks(risks: List[Dict[str, Any]]) -> str:
 
 
 model  = init_chat_model(
-    model="anthropic/claude-sonnet-4.5",
+    model="openai/gpt-5-mini",
     model_provider="openrouter",
     api_key=MY_API_KEY,
     temperature=0

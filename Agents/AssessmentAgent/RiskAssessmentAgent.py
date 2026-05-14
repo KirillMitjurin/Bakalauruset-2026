@@ -121,7 +121,7 @@ Your response must start with { and end with }.
 """
 
 
-model = init_chat_model(model="anthropic/claude-sonnet-4.5", model_provider="openrouter", api_key=MY_API_KEY, temperature=0)
+model = init_chat_model(model="openai/gpt-5-mini", model_provider="openrouter", api_key=MY_API_KEY, temperature=0)
 
 
 
@@ -172,5 +172,6 @@ all_results = evaluate_scenarios()
 
 print(json.dumps(all_results, indent=4, ensure_ascii=False))
 
-with open(f"evaluation_claude_results_test{5}.json", "w", encoding="utf-8") as f:
+with open(f"evaluation_gpt5_results_test{5}.json", "w", encoding="utf-8") as f:
     json.dump(all_results, f, indent=4, ensure_ascii=False)
+

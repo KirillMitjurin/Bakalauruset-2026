@@ -39,7 +39,7 @@ def validate_agents_data_transffering(data):
 
 #Evaluation results from test runs of the agents, used for validating the data transfer between agents.    
 for i in range(1,6):
-    with open(f"evaluation_claude_results_test{i}.json", "r", encoding="utf-8") as f:
+    with open(f"evaluation_gpt5_results_test{i}.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     for scenario in data:
@@ -75,7 +75,7 @@ Important rules:
 Scenario 1 risks:
 SCENARIO_1_RISKS_PLACEHOLDER
 
-Scenario 2 risks:
+Scenario 2 risks:s
 SCENARIO_2_RISKS_PLACEHOLDER
 
 Return ONLY valid JSON.
@@ -106,7 +106,7 @@ Output format:
 model = init_chat_model(model="google/gemma-4-31b-it", model_provider="openrouter", api_key=MY_API_KEY, temperature=0)
 
 def evaluate_consistency(index, scenario_number):    
-    with open(f"evaluation_claude_results_test{index}.json", "r", encoding="utf-8") as f:
+    with open(f"evaluation_gpt5_results_test{index}.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     scenario_1_risks = data[scenario_number]["identified_risks"]["risks"]
@@ -133,8 +133,8 @@ def evaluate_consistency(index, scenario_number):
     retention_score = (scenario_1_count - missing_count) / scenario_1_count if scenario_1_count > 0 else 0
 
 
-    with open(f"consistency_results_claude{index}.txt", "a", encoding="utf-8") as f:
-        f.write(f"Test file: evaluation_claude_results_test{index}.json\n")
+    with open(f"consistency_results_gpt5{index}.txt", "a", encoding="utf-8") as f:
+        f.write(f"Test file: evaluation_gpt5_results_test{index}.json\n")
         f.write(f"Scenario {scenario_number + 1} -> Scenario {scenario_number + 2}\n")
         f.write("-" * 80 + "\n")
         f.write(response.content)
@@ -147,7 +147,7 @@ def evaluate_consistency(index, scenario_number):
 
 
 
-for index in range(1,6):
-    for scenario_number in range(0,4):
-        print(f"Evaluating consistency between scenarios {scenario_number + 1} and {scenario_number + 2} for test{index}.json")
-        evaluate_consistency(index, scenario_number)
+for index in range(2,6):
+   for scenario_number in range(0,4):
+       print(f"Evaluating consistency between scenarios {scenario_number + 1} and {scenario_number + 2} for test{index}.json")
+       evaluate_consistency(index, scenario_number)
